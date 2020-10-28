@@ -34,7 +34,7 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <p-table [columns]="cols" [value]="datas" [paginator]="true" [rows]="6">
+          <p-table [columns]="cols" [value]="datas" [paginator]="true" [rows]="6" selectionMode="single">
             <ng-template pTemplate="header" let-columns>
               <tr>
                 <th *ngFor="let col of columns">
@@ -43,7 +43,7 @@
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns">
-              <tr>
+              <tr (dblclick)="selectedCustomer($event, rowData)">
                 <td *ngFor="let col of columns">
                   {{rowData[col.field]}}
                 </td>

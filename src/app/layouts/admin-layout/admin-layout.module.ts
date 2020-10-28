@@ -22,6 +22,7 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { ToastModule } from 'primeng/toast';
     //primeng module
     TableModule,
     ButtonModule,
+    CalendarModule,
     DynamicDialogModule,
     ToastModule
   ],

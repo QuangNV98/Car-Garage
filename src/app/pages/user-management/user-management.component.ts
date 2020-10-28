@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { StaffDetailComponent } from '../dialog/staff-detail/staff-detail.component';
 import { MessageService } from 'primeng/api';
+import { CustomerDetailComponent } from '../dialog/customer-detail/customer-detail.component';
 
 @Component({
   selector: 'app-user-management',
@@ -156,6 +157,19 @@ export class UserManagementComponent implements OnInit {
 	this.ref = this.dialogService.open(StaffDetailComponent, {
 		header: 'Information of staff',
 		width: '70%',
+		contentStyle: {"max-height": "500px", "overflow": "auto"},
+		baseZIndex: 10000
+	});
+
+	this.ref.onClose.subscribe(() =>{
+		
+	});
+  }
+
+  selectedCustomer(event, rowData) {
+	this.ref = this.dialogService.open(CustomerDetailComponent, {
+		header: 'Customer Information',
+		width: '30%',
 		contentStyle: {"max-height": "500px", "overflow": "auto"},
 		baseZIndex: 10000
 	});

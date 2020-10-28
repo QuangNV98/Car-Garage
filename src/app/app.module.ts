@@ -20,12 +20,14 @@ import { ButtonModule } from 'primeng/button';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { CustomerDetailComponent } from './pages/dialog/customer-detail/customer-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    CustomerDetailComponent
     // UserManagementComponent,
     // StaffDetailComponent
   ],
