@@ -1,16 +1,14 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { StaffDetailComponent } from '../dialog/staff-detail/staff-detail.component';
+import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { CustomerDetailComponent } from '../dialog/customer-detail/customer-detail.component';
+import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
+import { EquipmentDetailComponent } from '../dialog/equipment-detail/equipment-detail.component';
 
 @Component({
-  selector: 'app-user-management',
-  templateUrl: './user-management.component.html',
-  styleUrls: ['./user-management.component.css'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-equipment-management',
+  templateUrl: './equipment-management.component.html',
+  styleUrls: ['./equipment-management.component.css']
 })
-export class UserManagementComponent implements OnInit {
+export class EquipmentManagementComponent implements OnInit {
 
   datas: any[]=[
     {
@@ -152,30 +150,17 @@ export class UserManagementComponent implements OnInit {
   ];
   }
 
-  selectedStaff(event, rowData) {
-	this.ref = this.dialogService.open(StaffDetailComponent, {
-		header: 'Employee Information',
-		width: '70%',
-		contentStyle: {"max-height": "500px", "overflow": "auto"},
-		baseZIndex: 10000
-	});
-
-	this.ref.onClose.subscribe(() =>{
-		
-	});
-  }
-
-  selectedCustomer(event, rowData) {
-	this.ref = this.dialogService.open(CustomerDetailComponent, {
-		header: 'Customer Information',
-		width: '30%',
-		contentStyle: {"max-height": "500px", "overflow": "auto"},
-		baseZIndex: 10000
-	});
-
-	this.ref.onClose.subscribe(() =>{
-		
-	});
+  selectedEquipment(event, rowData) {
+    this.ref = this.dialogService.open(EquipmentDetailComponent, {
+      header: 'Equipment Information',
+      width: '50%',
+      contentStyle: {"max-height": "500px", "overflow": "auto"},
+      baseZIndex: 10000
+    });
+  
+    this.ref.onClose.subscribe(() =>{
+      
+    });
   }
 
 }

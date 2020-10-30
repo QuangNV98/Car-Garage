@@ -12,24 +12,12 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { UserManagementComponent } from './pages/user-management/user-management.component';
-
-import { TableModule } from 'primeng/table';
-import { StaffDetailComponent } from './pages/dialog/staff-detail/staff-detail.component';
-import { ButtonModule } from 'primeng/button';
-import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
-import { ToastModule } from 'primeng/toast';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { CustomerDetailComponent } from './pages/dialog/customer-detail/customer-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    CustomerDetailComponent
-    // UserManagementComponent,
-    // StaffDetailComponent
   ],
   imports: [
     BrowserAnimationsModule,

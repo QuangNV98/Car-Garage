@@ -23,6 +23,11 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import {CalendarModule} from 'primeng/calendar';
+import { CustomerDetailComponent } from 'app/pages/dialog/customer-detail/customer-detail.component';
+import { EquipmentManagementComponent } from 'app/pages/equipment-management/equipment-management.component';
+import { EquipmentDetailComponent } from 'app/pages/dialog/equipment-detail/equipment-detail.component';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import { TaskPlanningComponent } from 'app/pages/task-planning/task-planning.component';
 
 @NgModule({
   imports: [
@@ -35,7 +40,8 @@ import {CalendarModule} from 'primeng/calendar';
     ButtonModule,
     CalendarModule,
     DynamicDialogModule,
-    ToastModule
+    ToastModule,
+    InputTextareaModule
   ],
   declarations: [
     DashboardComponent,
@@ -47,7 +53,11 @@ import {CalendarModule} from 'primeng/calendar';
     MapsComponent,
     NotificationsComponent,
     UserManagementComponent,
-    StaffDetailComponent
+    StaffDetailComponent,
+    CustomerDetailComponent,
+    EquipmentManagementComponent,
+    EquipmentDetailComponent,
+    TaskPlanningComponent,
   ],
   providers: [DialogService,MessageService  ],
 })

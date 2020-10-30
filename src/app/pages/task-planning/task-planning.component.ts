@@ -1,16 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { StaffDetailComponent } from '../dialog/staff-detail/staff-detail.component';
+import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { CustomerDetailComponent } from '../dialog/customer-detail/customer-detail.component';
+import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 
 @Component({
-  selector: 'app-user-management',
-  templateUrl: './user-management.component.html',
-  styleUrls: ['./user-management.component.css'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-task-planning',
+  templateUrl: './task-planning.component.html',
+  styleUrls: ['./task-planning.component.css']
 })
-export class UserManagementComponent implements OnInit {
+export class TaskPlanningComponent implements OnInit {
 
   datas: any[]=[
     {
@@ -153,29 +150,11 @@ export class UserManagementComponent implements OnInit {
   }
 
   selectedStaff(event, rowData) {
-	this.ref = this.dialogService.open(StaffDetailComponent, {
-		header: 'Employee Information',
-		width: '70%',
-		contentStyle: {"max-height": "500px", "overflow": "auto"},
-		baseZIndex: 10000
-	});
 
-	this.ref.onClose.subscribe(() =>{
-		
-	});
   }
 
   selectedCustomer(event, rowData) {
-	this.ref = this.dialogService.open(CustomerDetailComponent, {
-		header: 'Customer Information',
-		width: '30%',
-		contentStyle: {"max-height": "500px", "overflow": "auto"},
-		baseZIndex: 10000
-	});
 
-	this.ref.onClose.subscribe(() =>{
-		
-	});
   }
 
 }
