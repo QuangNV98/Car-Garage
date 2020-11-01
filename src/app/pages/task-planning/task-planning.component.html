@@ -1,57 +1,84 @@
 <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Processing</h4>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <p-table [columns]="cols" [value]="datas" [paginator]="true" [rows]="6" selectionMode="single">
-              <ng-template pTemplate="header" let-columns>
-                <tr>
-                  <th *ngFor="let col of columns">
-                    {{col.header}}
-                  </th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-rowData let-columns="columns">
-                <tr (dblclick)="selectedStaff($event, rowData)">
-                  <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-                  </td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </div>
-        </div>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Repairing...</h4>
       </div>
-    </div>
-    <div class="col-md-12">
-      <div class="card card-plain">
-        <div class="card-header">
-          <h4 class="card-title">Customer Management</h4>
-          <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <p-table [columns]="cols" [value]="datas" [paginator]="true" [rows]="6" selectionMode="single">
-              <ng-template pTemplate="header" let-columns>
-                <tr>
-                  <th *ngFor="let col of columns">
-                    {{col.header}}
-                  </th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-rowData let-columns="columns">
-                <tr (dblclick)="selectedCustomer($event, rowData)">
-                  <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-                  </td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <p-table [columns]="cols" [value]="datas" [paginator]="true" [rows]="6" selectionMode="single">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th *ngFor="let col of columns">
+                  {{col.header}}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr (dblclick)="selectedStaff($event, rowData)">
+                <td *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
         </div>
       </div>
     </div>
   </div>
+  <div class="col-md-12">
+    <div class="card card-plain">
+      <div class="card-header">
+        <h4 class="card-title">Guarantee</h4>
+        <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <p-table [columns]="cols" [value]="datas" [paginator]="true" [rows]="6" selectionMode="single">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th *ngFor="let col of columns">
+                  {{col.header}}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr (dblclick)="selectedCustomer($event, rowData)">
+                <td *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Completed</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <p-table [columns]="cols" [value]="datas" [paginator]="true" [rows]="6" selectionMode="single">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th *ngFor="let col of columns">
+                  {{col.header}}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr (dblclick)="selectedStaff($event, rowData)">
+                <td *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
