@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
-import { RepairDetailComponent } from '../dialog/repair-detail/repair-detail.component';
 
 @Component({
-  selector: 'app-task-planning',
-  templateUrl: './task-planning.component.html',
-  styleUrls: ['./task-planning.component.css']
+  selector: 'app-repair-detail',
+  templateUrl: './repair-detail.component.html',
+  styleUrls: ['./repair-detail.component.css']
 })
-export class TaskPlanningComponent implements OnInit {
+export class RepairDetailComponent implements OnInit {
 
-  datas: any[]=[
-    {
+  products: any[]=[
+		{
 			"id": "1000",
 			"code": "f230fh0g3",
 			"name": "Bamboo Watch",
@@ -107,64 +104,11 @@ export class TaskPlanningComponent implements OnInit {
 			"inventoryStatus": "INSTOCK",
 			"rating": 5
 		},
-		{
-			"id": "1008",
-			"code": "vbb124btr",
-			"name": "Game Controller",
-			"description": "Product Description",
-			"image": "game-controller.jpg",
-			"price": 99,
-			"category": "Electronics",
-			"quantity": 2,
-			"inventoryStatus": "LOWSTOCK",
-			"rating": 4
-		},
-		{
-			"id": "1009",
-			"code": "cm230f032",
-			"name": "Gaming Set",
-			"description": "Product Description",
-			"image": "gaming-set.jpg",
-			"price": 299,
-			"category": "Electronics",
-			"quantity": 63,
-			"inventoryStatus": "INSTOCK",
-			"rating": 3
-		}
-  ]
-
-  cols: any[];
-  ref: DynamicDialogRef;
-  
-  constructor(
-	public dialogService: DialogService,
-	public messageService: MessageService
-  ) { }
+  ];
+  selectedProducts: any[];
+  constructor() { }
 
   ngOnInit(): void {
-    this.cols = [
-      { field: 'code', header: 'Code' },
-      { field: 'name', header: 'Name' },
-      { field: 'category', header: 'Category' },
-      { field: 'quantity', header: 'Quantity' }
-  ];
-  }
-
-  selectedRepairing(event, rowData) {
-	this.ref = this.dialogService.open(RepairDetailComponent, {
-		header: 'Repair Order',
-		width: '70%',
-		contentStyle: {"max-height": "1000px", "overflow": "auto"},
-		baseZIndex: 10000
-	});
-
-	this.ref.onClose.subscribe(() =>{
-		
-	});
-  }
-
-  selectedCustomer(event, rowData) {
-
   }
 
 }

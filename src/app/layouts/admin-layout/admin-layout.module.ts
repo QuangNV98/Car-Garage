@@ -28,6 +28,9 @@ import { EquipmentManagementComponent } from 'app/pages/equipment-management/equ
 import { EquipmentDetailComponent } from 'app/pages/dialog/equipment-detail/equipment-detail.component';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { TaskPlanningComponent } from 'app/pages/task-planning/task-planning.component';
+import { GuaranteeDetailComponent } from 'app/pages/dialog/guarantee-detail/guarantee-detail.component';
+import { RepairDetailComponent } from 'app/pages/dialog/repair-detail/repair-detail.component';
+import {ToolbarModule} from 'primeng/toolbar';
 
 @NgModule({
   imports: [
@@ -41,7 +44,8 @@ import { TaskPlanningComponent } from 'app/pages/task-planning/task-planning.com
     CalendarModule,
     DynamicDialogModule,
     ToastModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ToolbarModule
   ],
   declarations: [
     DashboardComponent,
@@ -58,6 +62,8 @@ import { TaskPlanningComponent } from 'app/pages/task-planning/task-planning.com
     EquipmentManagementComponent,
     EquipmentDetailComponent,
     TaskPlanningComponent,
+    RepairDetailComponent,
+    GuaranteeDetailComponent,
   ],
   providers: [DialogService,MessageService  ],
 })

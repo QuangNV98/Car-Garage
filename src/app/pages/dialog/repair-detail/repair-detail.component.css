@@ -1,0 +1,34 @@
+.p-paginator-current {
+    margin-left: auto;
+}
+
+.p-progressbar-value {
+    background-color: #607D8B;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.p-datatable-header {
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.p-paginator {
+    padding: 1rem;
+}
+
+.p-datatable-thead > tr > th {
+    text-align: left;
+}
+
+.p-datatable-tbody > tr > td {
+    cursor: auto;
+}
+
+.p-dropdown-label:not(.p-placeholder) {
+    text-transform: uppercase;
+}
