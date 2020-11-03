@@ -6,22 +6,22 @@ import { LoginLayoutComponent } from './layouts/login-layout/login-layout.compon
 export const AppRoutes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/admin',
     pathMatch: 'full',
   },
   { path: 'login', loadChildren: () => import('./layouts/login-layout/login-layout.module').then(m => m.LoginLayoutModule) },
   {
-    path: '',
+    path: 'admin',
     component: AdminLayoutComponent,
     children: [
       {
         path: '',
-        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-      }
+        loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
+       },
     ]
   },
-  {
-    path: '**',
-    redirectTo: 'dashboard'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: '/login'
+  // }
 ]

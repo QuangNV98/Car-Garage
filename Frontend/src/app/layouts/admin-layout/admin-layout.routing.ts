@@ -13,15 +13,20 @@ import { EquipmentManagementComponent } from 'app/pages/equipment-management/equ
 import { TaskPlanningComponent } from 'app/pages/task-planning/task-planning.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-management',component: UserManagementComponent },
-    { path: 'equip-management',component: EquipmentManagementComponent },
-    { path: 'task-planning',component: TaskPlanningComponent },
-    { path: 'user',           component: UserComponent },
-    { path: 'table',          component: TableComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    {
+        path: '',
+        redirectTo: '/admin/dashboard',
+        pathMatch: 'full'
+    },
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'user-management', component: UserManagementComponent },
+    { path: 'equip-management', component: EquipmentManagementComponent },
+    { path: 'task-planning', component: TaskPlanningComponent },
+    { path: 'user', component: UserComponent },
+    { path: 'table', component: TableComponent },
+    { path: 'typography', component: TypographyComponent },
+    { path: 'icons', component: IconsComponent },
+    { path: 'maps', component: MapsComponent },
+    { path: 'notifications', component: NotificationsComponent },
+    { path: 'upgrade', component: UpgradeComponent }
 ];

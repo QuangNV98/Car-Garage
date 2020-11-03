@@ -10,16 +10,16 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard',     title: 'Dashboard',         icon:'nc-bank',       class: '' },
-    { path: '/user-management',        title: 'User Management',    icon:'nc-user-run',    class: '' },
-    { path: '/equip-management',        title: 'Equipment',    icon:'nc-settings',    class: '' },
-    { path: '/task-planning',        title: 'Task Planning',    icon:'nc-delivery-fast',    class: '' },
-    { path: '/icons',         title: 'Icons',             icon:'nc-palette',    class: '' },
-    { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
-    { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
-    { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
-    { path: '/table',         title: 'Table List',        icon:'nc-tile-56',    class: '' },
-    { path: '/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
+    { path: '/admin/dashboard',     title: 'Dashboard',         icon:'nc-bank',       class: '' },
+    { path: '/admin/user-management',        title: 'User Management',    icon:'nc-user-run',    class: '' },
+    { path: '/admin/equip-management',        title: 'Equipment',    icon:'nc-settings',    class: '' },
+    { path: '/admin/task-planning',        title: 'Task Planning',    icon:'nc-delivery-fast',    class: '' },
+    { path: '/admin/icons',         title: 'Icons',             icon:'nc-palette',    class: '' },
+    { path: '/admin/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
+    { path: '/admin/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
+    { path: '/admin/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
+    { path: '/admin/table',         title: 'Table List',        icon:'nc-tile-56',    class: '' },
+    { path: '/admin/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
     // { path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' },
 ];
 

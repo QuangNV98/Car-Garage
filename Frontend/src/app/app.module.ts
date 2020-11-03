@@ -20,12 +20,11 @@ import { LoginLayoutModule } from './layouts/login-layout/login-layout.module';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginLayoutComponent,
+    // LoginLayoutComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes,{
-      useHash: true,
       onSameUrlNavigation: "reload"
     }),
     SidebarModule,
