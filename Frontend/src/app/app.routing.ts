@@ -1,9 +1,10 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { NgModule } from '@angular/core';
 
-export const AppRoutes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: '/admin',
@@ -25,3 +26,8 @@ export const AppRoutes: Routes = [
   //   redirectTo: '/login'
   // }
 ]
+@NgModule({
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: "reload"})],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

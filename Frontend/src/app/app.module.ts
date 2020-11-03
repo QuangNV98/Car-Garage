@@ -9,24 +9,20 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
 
 import { AppComponent } from './app.component';
-import { AppRoutes } from './app.routing';
+import { AppRoutingModule } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
-import { LoginLayoutModule } from './layouts/login-layout/login-layout.module';
-
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    // LoginLayoutComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutes,{
-      onSameUrlNavigation: "reload"
-    }),
+    AppRoutingModule,
     SidebarModule,
     NavbarModule,
     ToastrModule.forRoot(),

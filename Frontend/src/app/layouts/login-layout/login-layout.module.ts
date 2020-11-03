@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginLayoutComponent } from './login-layout.component';
 import { LoginLayoutRoutes } from './login-layout-routing.module';
 import { RouterModule } from '@angular/router';
+import { AppService } from 'app/service/app.service';
+import { AuthenticationService } from 'app/service/authentication.service';
 
 
 
@@ -17,6 +19,10 @@ import { RouterModule } from '@angular/router';
         FormsModule,
         LoginLayoutRoutes
 
+    ],
+    providers: [
+        AppService,
+        AuthenticationService
     ]
 })
 export class LoginLayoutModule { }
