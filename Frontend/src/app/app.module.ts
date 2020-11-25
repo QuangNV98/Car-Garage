@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {HttpClientModule} from '@angular/common/http';
+import { AppService } from './service/app.service';
+import { AuthenticationService } from './service/authentication.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,10 @@ import {HttpClientModule} from '@angular/common/http';
     // DynamicDialogModule,
     // ToastModule
   ],
+  providers: [
+    AppService,
+    AuthenticationService,
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

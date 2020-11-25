@@ -157,7 +157,10 @@ export class UserManagementComponent implements OnInit {
 		header: 'Employee Information',
 		width: '70%',
 		contentStyle: {"max-height": "500px", "overflow": "auto"},
-		baseZIndex: 10000
+		baseZIndex: 10000,
+		data: {
+			CRUD: rowData == null ? 'C' : 'U'
+		}
 	});
 
 	this.ref.onClose.subscribe(() =>{

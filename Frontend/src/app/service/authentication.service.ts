@@ -7,6 +7,7 @@ import { environment } from 'environments/environment';
 import { ApiUrlUtil } from 'app/utils/api-url.util';
 import { RequestParam } from 'app/model/common/request-param';
 import { ParamUtil } from 'app/utils/param.util';
+import {Cookie} from 'ng2-cookies';
 
 @Injectable()
 export class AuthenticationService {
@@ -15,6 +16,31 @@ export class AuthenticationService {
     private http: HttpClient,
     private router: Router,
   ) {
+  }
+
+  checkCredentials(): boolean {
+    if (!Cookie.check('ACCESS_TOKEN')) {
+      this.router.navigate(['/login']);
+      return false;
+    }
+    return true;
+  }
+
+  saveToken(token: any) {
+    Cookie.delete('ACCESS_TOKEN');
+    Cookie.delete('USER_NM');
+    Cookie.delete('USER_ID');
+    Cookie.delete('USER_ROLE');
+
+    const expireDate = new Date().getTime() + (100000 * token.expires_in);
+    Cookie.set('ACCESS_TOKEN', token.token, expireDate);
+    // Cookie.set('USER_NM', token.usernm, expireDate);
+    // Cookie.set('USER_ID', token.userId, expireDate);
+    // Cookie.set('USER_ROLE', token.userRoles, expireDate);
+
+    // this.saveLoginInfo(token.userId);
+
+    this.router.navigate(['/admin/']);
   }
 
   login(account: AccountInfo): Observable<any> {
@@ -33,6 +59,14 @@ export class AuthenticationService {
     // headers = headers.append('Authorization', AuthConstant.AUTHORIZATION_VALUE);
 
     return this.http.post<any>(authArl,account, {headers: headers, observe: 'response'});
+  }
+
+  logout() {
+    Cookie.delete('ACCESS_TOKEN');
+    Cookie.delete('USER_NM');
+    Cookie.delete('USER_ID');
+    Cookie.delete('USER_ROLE');
+    this.router.navigate(['/login']);
   }
 
 }

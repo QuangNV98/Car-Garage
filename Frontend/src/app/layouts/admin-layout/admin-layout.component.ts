@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'app/service/app.service';
+import { Router } from '@angular/router';
+import { Cookie } from 'ng2-cookies';
 
 
 @Component({
@@ -8,5 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  ngOnInit() { }
+  constructor(
+    private appService: AppService,
+    private router: Router,
+  ) { }
+
+  ngOnInit() {
+    if (!Cookie.check('ACCESS_TOKEN')) {
+      this.router.navigate(['/login']);
+    }
+   }
+
 }
