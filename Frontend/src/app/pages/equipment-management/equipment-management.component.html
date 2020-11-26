@@ -1,10 +1,11 @@
 <div class="card">
   <div class="card-header">
-    <h4 class="card-title">Equipment Management</h4>
+    <h4 class="card-title" style="float: left;">Equipment Management</h4>
+    <button style="float: right;" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" (click)="selectedEquipment(null, null)"></button>
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <p-table [columns]="cols" [value]="datas" [paginator]="true" [rows]="6" selectionMode="single">
+      <p-table [columns]="cols" [value]="dataGridEquip" [paginator]="true" [rows]="6" selectionMode="single">
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th *ngFor="let col of columns">

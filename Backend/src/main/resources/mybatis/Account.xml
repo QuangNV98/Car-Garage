@@ -2,8 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.quangnv.dao.AccountDao">
 
-	<select id="findAllsAccount" parameterType="map" resultType="map">
+	<select id="findAllsAccount" parameterType="map"
+		resultType="map">
 		SELECT * FROM account
 	</select>
+
+	<insert id="insertAccount" parameterType="map"
+		useGeneratedKeys="true" keyProperty="ID_ERROR">
+		INSERT INTO account(
+			USERNAME,
+			PASSWORD
+		)
+		VALUES(
+			#{USERNAME},
+			#{PASSWORD}
+		)
+
+		<selectKey resultType="Integer" order="AFTER"
+			keyProperty="returnedId">
+			SELECT LAST_INSERT_ID() as returnedId
+		</selectKey>
+	</insert>
 	
+	<update id="updateAccount" parameterType="map">
+		UPDATE account
+		SET 
+			USERNAME = #{USERNAME},
+			PASSWORD = #{PASSWORD}
+		WHERE ID = #{ID_ACCOUNT}
+	</update>
+	
+	<update id="updateAccountDontChangePass" parameterType="map">
+		UPDATE account
+		SET 
+			USERNAME = #{USERNAME}
+		WHERE ID = #{ID_ACCOUNT}
+	</update>
+
 </mapper> 

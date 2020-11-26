@@ -32,17 +32,29 @@ export class StaffService {
         return this.http.get<any>(url);
     }
 
-    // doSaveStaff(request: any): Observable<any> {
-    //     console.log(HeadersUtil.getHeadersAuth());
-    //     return this.http.post<ResponseData<any>>(environment.apiURL + '/api/doSaveStaff', request, {
-    //         headers: HeadersUtil.getHeadersAuth()
-    //     });
-    // }
+    doCreateUser(request: any): Observable<any> {
+        return this.http.post<ResponseData<any>>(environment.apiURL + '/api/doCreateUser', request, {
+            headers: HeadersUtil.getHeadersAuth()
+        });
+    }
 
-    doSaveStaff(request: any): Observable<any>{
+    doUpdateUser(request: any): Observable<any> {
+        return this.http.post<ResponseData<any>>(environment.apiURL + '/api/doUpdateUser', request, {
+            headers: HeadersUtil.getHeadersAuth()
+        });
+    }
+
+    getAllStaff(): Observable<any[]>{
         const headers: HttpHeaders = HeadersUtil.getHeadersAuth();
-        const params: RequestParam[] = ParamUtil.toRequestParams(request);
-        const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/hello',params);
-        return this.http.get<any>(url,{headers: headers});
-      }
+        // const params: RequestParam[] = ParamUtil.toRequestParams(request);
+        const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getAllStaff');
+        return this.http.get<any[]>(url,{headers: headers});
+    }
+
+    getAllCustomer(): Observable<any[]>{
+        const headers: HttpHeaders = HeadersUtil.getHeadersAuth();
+        // const params: RequestParam[] = ParamUtil.toRequestParams(request);
+        const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getAllCustomer');
+        return this.http.get<any[]>(url,{headers: headers});
+    }
 }

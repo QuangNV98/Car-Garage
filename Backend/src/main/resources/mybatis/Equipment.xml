@@ -1,0 +1,41 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quangnv.dao.EquipmentDao">
+
+	<insert id="insertEquipment" parameterType="map">
+		INSERT INTO equipment(
+			IMAGE,
+			NAME,
+			PRICE,
+			ABOUT
+		)VALUES(
+			#{IMAGE},
+			#{NAME},
+			#{PRICE},
+			#{ABOUT}
+		)
+		<selectKey resultType="Integer" order="AFTER"
+			keyProperty="returnedId">
+			SELECT LAST_INSERT_ID() as returnedId
+		</selectKey>
+	</insert>
+	
+	<select id="getAllEquipment" parameterType="map" resultType="map">
+		SELECT * FROM equipment;
+	</select>
+	
+	<select id="getEquipmentById" parameterType="map" resultType="map">
+		SELECT * FROM equipment WHERE ID = #{ID}
+	</select>
+	
+	<insert id="updateEquipment" parameterType="map">
+		UPDATE equipment
+		SET
+			IMAGE = #{IMAGE},
+			NAME = #{NAME},
+			PRICE = #{PRICE},
+			ABOUT = #{ABOUT}
+		WHERE ID = #{ID}
+	</insert>
+
+</mapper> 

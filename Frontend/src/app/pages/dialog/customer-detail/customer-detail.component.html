@@ -1,42 +1,79 @@
 <div class="card card-user">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md">
-                <div class="form-group">
-                    <label>Full name</label>
-                    <input type="text" class="form-control" placeholder="Fullname" value="Nguyen Van Quang">
-                </div>
-            </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Username</label><span style="color: red">*</span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="username..."
+            [(ngModel)]="request.USERNAME"
+          />
         </div>
-        <div class="row">
-            <div class="col-md">
-                <div class="form-group">
-                    <label>Phone number</label>
-                    <input type="number" class="form-control" placeholder="Phonenumber" value="0915997460">
-                </div>
-            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Password</label><span style="color: red">*</span>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="********"
+            [(ngModel)]="request.PASSWORD"
+          />
         </div>
-        <div class="row">
-            <div class="col-md">
-                <div class="form-group">
-                    <label>Company</label>
-                    <input type="text" class="form-control" placeholder="Company" value="VinGroup.Tech">
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md">
+        <div class="form-group">
+          <label>Full name</label><span style="color: red">*</span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Fullname"
+            [(ngModel)]="request.NAME"
+          />
         </div>
-        <div class="row">
-            <div class="col-md">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" placeholder="email" value="quangoc98@gmail.com">
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md">
+        <div class="form-group">
+          <label>Phone number</label><span style="color: red">*</span>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Phonenumber"
+            [(ngModel)]="request.PHONE_NUM"
+          />
         </div>
-        <div class="row">
-            <div class="update ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
-            </div>
-        </div>
+      </div>
     </div>
 
+    <div class="row">
+      <div class="col-md">
+        <div class="form-group">
+          <label>Address</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Company"
+            [(ngModel)]="request.ADDRESS"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="update ml-auto mr-auto">
+        <button
+          type="submit"
+          class="btn btn-primary btn-round"
+          (click)="doSubmit()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

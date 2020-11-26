@@ -29,14 +29,14 @@
                         <div class="form-group">
                             <label>Username</label><span style="color: red;">*</span>
                             <input type="text" class="form-control" placeholder="username..."
-                                [(ngModel)]="request.USER_NM">
+                                [(ngModel)]="request.USERNAME">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Password</label><span style="color: red;">*</span>
-                            <input type="password" class="form-control" placeholder="password..."
-                                [(ngModel)]="request.USER_PW">
+                            <input type="password" class="form-control" placeholder="********"
+                                [(ngModel)]="request.PASSWORD">
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 <div class="form-group">
                     <label>Birthday</label>
                     <div>
-                        <input type="date" id="birthday" name="birthday">
+                        <input type="date" id="birthday" name="birthday" [(ngModel)]="request.BIRTH_DT">
                     </div>
                 </div>
             </div>
@@ -77,27 +77,27 @@
         <div class="row">
             <div class="col-md-4">
 
-                <label>City</label>
+                <label>City</label><span style="color: red;">*</span>
                 <div style="width: 100%;">
-                    <p-dropdown [options]="cities" [(ngModel)]="request.CITY_ID" optionLabel="Title" optionValue="ID" 
+                    <p-dropdown [options]="cities" optionLabel="Title" optionValue="ID" [(ngModel)]="selectedCity"
                         placeholder="Select a City" (onChange)="onChangeCity($event)">
                     </p-dropdown>
                 </div>
             </div>
             <div class="col-md-4">
 
-                <label>District</label>
+                <label>District</label><span style="color: red;">*</span>
                 <div style="width: 100%;">
-                    <p-dropdown [options]="districts" [(ngModel)]="request.DISTRICT_ID" optionLabel="Title" optionValue="ID"
+                    <p-dropdown [options]="districts" optionLabel="Title" optionValue="ID" [(ngModel)]="selectedDistrict"
                         placeholder="Select a District" (onChange)="onChangeDistrict($event)">
                     </p-dropdown>
                 </div>
             </div>
             <div class="col-md-4">
 
-                <label>Ward</label>
+                <label>Ward</label><span style="color: red;">*</span>
                 <div style="width: 100%;">
-                    <p-dropdown [options]="wards" [(ngModel)]="request.WARD_ID" optionLabel="Title" optionValue="ID"
+                    <p-dropdown [options]="wards" optionLabel="Title" optionValue="ID" [(ngModel)]="selectedWard"
                         placeholder="Select a Ward" (onChange)="onChangeWard($event)">
                     </p-dropdown>
                 </div>

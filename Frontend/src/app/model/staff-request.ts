@@ -2,16 +2,18 @@ export class StaffRequest {
     ID: any;
     NAME : any;
     COMP_NM: any;
-    USER_NM: any;
-    USER_PW: any;
+    USERNAME: any;
+    PASSWORD: any;
     PHONE_NUM: any;
     EMAIL: any;
     ID_NUM: any;
     BIRTH_DT: any;
-    CITY_ID: any;
-    DISTRICT_ID: any;
-    WARD_ID: any;
+    ID_CITY: any;
+    ID_DISTRICT: any;
+    ID_WARD: any;
     ADDRESS: any;
     ABOUT: any;
     AVATAR: any;
+    ID_ACCOUNT: any;
+    ROLE:any;
 }
