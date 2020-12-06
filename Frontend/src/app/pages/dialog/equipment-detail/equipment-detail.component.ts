@@ -11,6 +11,8 @@ import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 export class EquipmentDetailComponent implements OnInit {
 
   request: EquipmentRequest;
+  url: any;
+  file: any;
 
   constructor(
     public ref: DynamicDialogRef,
@@ -19,11 +21,13 @@ export class EquipmentDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.file = null;
     if (this.config.data) {
       if (this.config.data.CRUD == "C") {
         //create
         this.request = new EquipmentRequest();
         this.request.PRICE = 0;
+        this.url = '/assets/img/system/default-equip.png'
       } else if (this.config.data.CRUD == "U") {
         //update
         this.request = Object.assign(this.config.data.EQUIP);
@@ -31,6 +35,21 @@ export class EquipmentDetailComponent implements OnInit {
       }
     }
   }
+
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      // this.request.IMAGE = new FormData();
+      // this.request.IMAGE.append('IMAGE',event.target.files[0])
+      this.file = event.target.files[0];
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      }
+    }
+}
 
   doSubmit() {
     if (this.doValidate()) {
@@ -43,7 +62,17 @@ export class EquipmentDetailComponent implements OnInit {
   }
 
   doCreate() {
-    this.service.doCreateEquipment(this.request).subscribe(
+    const formData = new FormData();
+    formData.append('NAME',this.request.NAME);
+
+    var equip = JSON.stringify(this.request);
+    formData.append('equip',equip);
+    formData.append('file',this.file);
+    // formData.append('PRICE',this.request.PRICE);
+    // formData.append('ABOUT',this.request.ABOUT);
+
+    console.log(formData)
+    this.service.doCreateEquipment(formData).subscribe(
       response => {
         if(response['STATE'] == 'SUCCESS') {
           this.request.ID = response['ID_RETURNED'];
@@ -54,7 +83,14 @@ export class EquipmentDetailComponent implements OnInit {
   }
 
   doUpdate() {
-    this.service.doUpdateEquipment(this.request).subscribe(
+    const formData = new FormData();
+    formData.append('NAME',this.request.NAME);
+
+    var equip = JSON.stringify(this.request);
+    formData.append('equip',equip);
+    formData.append('file',this.file);
+
+    this.service.doUpdateEquipment(formData).subscribe(
       response => {
         if(response['STATE'] == 'SUCCESS') {
           alert('update success');
@@ -69,6 +105,7 @@ export class EquipmentDetailComponent implements OnInit {
       response => {
         if(response) {
           this.request =response;
+          this.url = '/assets/img/system/'+this.request.IMAGE;
         }
       }
     )

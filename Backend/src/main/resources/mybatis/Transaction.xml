@@ -1,0 +1,72 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quangnv.dao.TransactionDao">
+
+	<insert id="insertTransaction" parameterType="map">
+		INSERT INTO transaction(
+			ID_CUS,
+			TYPE,
+			START_DT,
+			END_DT,
+			CAR_NAME,
+			CAR_COLOR,
+			CAR_MODEL,
+			CAR_NUM,
+			CAR_ABOUT,
+			FEE_EQUIP,
+			FEE_WORK,
+			FEE_TOTAL,
+			STATUS
+		)VALUES(
+			#{ID_CUS},
+			#{TYPE},
+			#{START_DT},
+			#{END_DT},
+			#{CAR_NAME},
+			#{CAR_COLOR},
+			#{CAR_MODEL},
+			#{CAR_NUM},
+			#{CAR_ABOUT},
+			#{FEE_EQUIP},
+			#{FEE_WORK},
+			#{FEE_TOTAL},
+			#{STATUS}
+		)
+		
+		<selectKey resultType="Integer" order="AFTER"
+			keyProperty="returnedId">
+			SELECT LAST_INSERT_ID() as returnedId
+		</selectKey>
+	</insert>
+	
+	<insert id="insertTransEquipment" parameterType="map">
+		INSERT INTO trans_equip(
+			ID_TRANS,
+			ID_EQUIP,
+			QUANTITY_EQUIP,
+			PRICE_TOTAL
+		)VALUES(
+			#{ID_TRANS},
+			#{ID_EQUIP},
+			#{QUANTITY_EQUIP},
+			#{PRICE_TOTAL}
+		)
+	</insert>
+	
+	<select id="getAllTransRepairing" parameterType="map" resultType="map">
+		SELECT 
+			A.ID AS ID_TRANS,
+			A.START_DT,
+			A.END_DT,
+			A.CAR_NAME,
+			A.CAR_NUM,
+			A.STATUS,
+			B.ID AS ID_CUS,
+			B.NAME AS NAME_CUS,
+			B.PHONE_NUM AS PHONE_CUS,
+			B.ADDRESS AS ADDRESS_CUS
+		FROM transaction as A INNER JOIN user as B ON A.ID_CUS = B.ID
+			
+	</select>
+
+</mapper> 

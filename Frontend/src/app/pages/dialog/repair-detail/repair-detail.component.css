@@ -32,3 +32,11 @@
 .p-dropdown-label:not(.p-placeholder) {
     text-transform: uppercase;
 }
+
+.p-inputnumber-input {
+    width: 55px !important;
+}
+
+.p-dropdown {
+    width: 100%;
+}

@@ -1,3 +1,4 @@
+import { EquipmentRequest } from 'app/model/equipment-request';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -18,8 +19,14 @@ export class EquipmentService {
     ) { }
 
     doCreateEquipment(request: any): Observable<any> {
-        return this.http.post<ResponseData<any>>(environment.apiURL + '/api/doCreateEquipment', request, {
-            headers: HeadersUtil.getHeadersAuth()
+        return this.http.post<any>(environment.apiURL + '/api/doCreateEquipment', request, {
+            headers: HeadersUtil.getHeadersAuthFormData()
+        });
+    }
+
+    doUpdateEquipment(request: any): Observable<any> {
+        return this.http.post<any>(environment.apiURL + '/api/updateEquipment', request, {
+            headers: HeadersUtil.getHeadersAuthFormData()
         });
     }
 
@@ -37,10 +44,10 @@ export class EquipmentService {
         return this.http.get<any>(url,{headers: headers});
     }
 
-    doUpdateEquipment(request: any): Observable<any> {
-        return this.http.post<ResponseData<any>>(environment.apiURL + '/api/updateEquipment', request, {
-            headers: HeadersUtil.getHeadersAuth()
-        });
-    }
+    // doUpdateEquipment(request: any): Observable<any> {
+    //     return this.http.post<ResponseData<any>>(environment.apiURL + '/api/updateEquipment', request, {
+    //         headers: HeadersUtil.getHeadersAuth()
+    //     });
+    // }
 
 }

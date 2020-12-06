@@ -1,8 +1,11 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="card card-user">
+        <div class="card">
             <div class="card-header" style="background-color: #F5F5F5;">
-                <h6 class="card-title">Customer information</h6>
+                <div style="display: inline;">
+                    <span style="color: red;float: left;">*</span>
+                    <h6 class="card-title" style="float: left;">Customer information</h6>
+                </div>  
             </div>
             <div class="card-body">
         
@@ -10,7 +13,10 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" placeholder="Name..." value="Nguyen Van Quang">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon" (click)="openDialogCustomer()"><i class="pi pi-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Name..." [(ngModel)]="request.NAME_CUS" readonly>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -19,67 +25,50 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input type="number" class="form-control" placeholder="phone..." value="0915997460">
+                            <input type="number" class="form-control" placeholder="phone..." [(ngModel)]="request.PHONE_CUS" readonly>
                         </div>
                     </div>
         
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Sex</label>
-                            <input type="text" class="form-control" placeholder="phone..." value="Male">
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" placeholder="phone..." value="quangoc98@gmail.com">
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Street Adress</label>
-                            <input type="text" class="form-control" placeholder="phone..." value="Tho Hac, Dong Tho">
-                        </div>
-                    </div>
-        
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>City, State</label>
-                            <input type="text" class="form-control" placeholder="phone..." value="tp Thanh Hoa">
+                            <input type="text" class="form-control" placeholder="address..." [(ngModel)]="request.ADDRESS_CUS" readonly>
                         </div>
                     </div>
                 </div>
+        
             </div>
         </div>
     </div>
 
     <div class="col-md-6">
-        <div class="card card-user">
+        <div class="card">
             <div class="card-header" style="background-color: #F5F5F5;">
-                <h6 class="card-title">Customer's Company information</h6>
+                <div style="display: inline;">
+                    <span style="color: red;float: left;">*</span>
+                    <h6 class="card-title">General information</h6>
+                </div>
             </div>
             <div class="card-body">
         
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label>Company Name</label>
-                            <input type="text" class="form-control" placeholder="Name..." value="VNPT">
+                            <label>Type</label>
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-tags"></i></span>
+                                <input type="text" class="form-control" value="Repair, fixxing" readonly>
+                            </div>
                         </div>
                     </div>
-                </div>
-        
-                <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label>Company Address</label>
-                            <input type="text" class="form-control" placeholder="Name..." value="VNPT">
+                            <label>Status</label>
+                            <div>
+                                <p-dropdown [options]="status" optionLabel="Title" optionValue="ID" [(ngModel)]="selectedStatus"
+                                    placeholder="Select a Status" (onChange)="onChangeStatus($event)">
+                                </p-dropdown>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,23 +76,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Company Phonenumber</label>
-                            <input type="text" class="form-control" placeholder="Name..." value="0888880808">
+                            <label>Start Date</label>
+                            <input type="date" class="form-control" [(ngModel)]="request.START_DT" readonly=true>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Company Email</label>
-                            <input type="email" class="form-control" placeholder="Name..." value="company@gmail.com">
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Fax</label>
-                            <input type="text" class="form-control" placeholder="Name..." value="FAX-2840-98899">
+                            <label>End Date(Expected)</label>
+                            <input type="date" class="form-control" [(ngModel)]="request.END_DT">
                         </div>
                     </div>
                 </div>
@@ -113,7 +93,7 @@
     </div>
 </div>
 
-<div class="card card-user">
+<div class="card">
     <div class="card-header" style="background-color: #F5F5F5;">
         <h6 class="card-title">Car information</h6>
     </div>
@@ -122,52 +102,38 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" placeholder="Name..." value="Mercedes">
+                    <label>Name</label><span style="color: red;">*</span>
+                    <input type="text" class="form-control" placeholder="Vehicle name..." [(ngModel)]="request.CAR_NAME">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label>Model</label>
-                    <input type="text" class="form-control" placeholder="Name..." value="GLC-2030">
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Make</label>
-                    <input type="text" class="form-control" placeholder="Name..." value="2030">
+                    <input type="text" class="form-control" placeholder="Model..." [(ngModel)]="request.CAR_MODEL">
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="form-group">
                     <label>Colour</label>
-                    <input type="text" class="form-control" placeholder="Name..." value="Black">
+                    <input type="text" class="form-control" placeholder="Color..." [(ngModel)]="request.CAR_COLOR">
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>License plates</label>
-                    <input type="text" class="form-control" placeholder="Name..." value="36A-88990">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Reg.No</label>
-                    <input type="text" class="form-control" placeholder="Name..." value="MER-8989-90">
-                </div>
-            </div>
-        </div>
 
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>License plates</label><span style="color: red;">*</span>
+                    <input type="text" class="form-control" placeholder="number..." [(ngModel)]="request.CAR_NUM">
+                </div>
+            </div>
+        </div>
+    
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <label>The condition of the vehicle upon receipt</label>
-                    <textarea class="form-control" [rows]="4" [cols]="25" pInputTextarea
-                                autoResize="autoResize">Very goood, very very good...</textarea>
+                    <textarea class="form-control" [rows]="4" [cols]="25" pInputTextarea [(ngModel)]="request.CAR_ABOUT"
+                                autoResize="autoResize"></textarea>
                 </div>
             </div>
         </div>
@@ -178,59 +144,87 @@
 <div class="card">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"></button>
-            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"></button>
+            <h6 class="card-title">Manage Equipments</h6>
         </ng-template>
 
         <ng-template pTemplate="right">
-        
-            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+            <button pButton pRipple label="Add" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openDialogEquipment()"></button>
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
-        [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-        <ng-template pTemplate="caption">
-            <div class="p-d-flex p-ai-center p-jc-between" >
-                <p class="p-m-0" style="float: left;">Manage Equipments</p>
-                <span class="p-input-icon-left" style="float: right;">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
-                </span>
-            </div>
-        </ng-template>
+    <p-table #dt [value]="dataGridEquip" [paginator]="true" [rows]="3" selectionMode="single"
+        >
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 3rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-                <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
-                <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>About</th>
                 <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
             <tr>
                 <td>
-                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                    <img src="/assets/img/system/{{product['IMAGE']}}"
+                    style="width: 50px;height: 50px;"
+                >
                 </td>
-                <td>{{product.name}}</td>
-                <td>{{product.price | currency:'USD'}}</td>
-                <td>{{product.category}}</td>
-                <td><span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span></td>
+                <td>{{product.NAME}}</td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                    <input type="number" value="{{product.QUANTITY_EQUIP}}" min="1" max="100" style="width: 60px;" (change)="doChangeQuantity($event,product.ID_RECENT)">    
+                </td>
+                <td>{{product.PRICE_TOTAL| currency:'VND'}}</td>
+                <td>{{product.ABOUT}}</td>
+                <td>
+                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEquipRecent(product.ID_RECENT)"></button>
                 </td>
             </tr>
         </ng-template>
-        <ng-template pTemplate="summary">
-            <div class="p-d-flex p-ai-center p-jc-between">
-                In total there are {{products ? products.length : 0 }} products.
-            </div>
-        </ng-template>
     </p-table>
+</div>
+
+<div class="card">
+    <div class="card-header" style="background-color: #F5F5F5;">
+        <h6 class="card-title">Total Fee</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Equipment fees</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">VND</span>
+                        <input type="number" class="form-control" readonly [ngModel]="request.FEE_EQUIP">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Repairing fees</label><span style="color: red;">*</span>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">VND</span>
+                        <input type="number" [(ngModel)]="request.FEE_WORK" min="0" max="999999999" class="form-control"
+                         placeholder="price..." (change)="doChangeFeeOfWork($event)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Total</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">VND</span>
+                        <input type="number" class="form-control" readonly [(ngModel)]="request.FEE_TOTAL">
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+<div class="row">
+    <div class="update ml-auto mr-auto">
+        <button type="submit" class="btn btn-primary btn-round" (click)="doSubmit()">Submit</button>
+    </div>
 </div>

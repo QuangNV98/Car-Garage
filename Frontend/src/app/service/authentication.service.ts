@@ -19,11 +19,13 @@ export class AuthenticationService {
   }
 
   checkCredentials(): boolean {
-    if (!Cookie.check('ACCESS_TOKEN')) {
-      this.router.navigate(['/login']);
-      return false;
+    if (Cookie.get('ACCESS_TOKEN') != null && Cookie.get('ACCESS_TOKEN') != '') {
+      console.log(Cookie.get('ACCESS_TOKEN'))
+      // this.router.navigate(['/login']);
+      // not login
+      return true;
     }
-    return true;
+    return false;
   }
 
   saveToken(token: any) {

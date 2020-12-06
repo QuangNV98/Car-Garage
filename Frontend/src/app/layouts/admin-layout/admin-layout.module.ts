@@ -32,6 +32,10 @@ import { GuaranteeDetailComponent } from 'app/pages/dialog/guarantee-detail/guar
 import { RepairDetailComponent } from 'app/pages/dialog/repair-detail/repair-detail.component';
 import {ToolbarModule} from 'primeng/toolbar';
 import {DropdownModule} from 'primeng/dropdown';
+import {FileUploadModule} from 'primeng/fileupload';
+import { CustomerDialogComponent } from 'app/pages/dialog/customer-dialog/customer-dialog.component';
+import { EquipmentDialogComponent } from 'app/pages/dialog/equipment-dialog/equipment-dialog.component';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 @NgModule({
   imports: [
@@ -47,7 +51,9 @@ import {DropdownModule} from 'primeng/dropdown';
     ToastModule,
     InputTextareaModule,
     ToolbarModule,
-    DropdownModule
+    DropdownModule,
+    FileUploadModule,
+    InputNumberModule
   ],
   declarations: [
     DashboardComponent,
@@ -66,6 +72,8 @@ import {DropdownModule} from 'primeng/dropdown';
     TaskPlanningComponent,
     RepairDetailComponent,
     GuaranteeDetailComponent,
+    CustomerDialogComponent,
+    EquipmentDialogComponent,
   ],
   providers: [DialogService,MessageService  ],
 })
