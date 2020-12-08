@@ -1,4 +1,4 @@
-<div class="limiter">
+<!-- <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
             <form class="login100-form validate-form">
@@ -24,5 +24,23 @@
                
             </form>
         </div>
+    </div>
+</div> -->
+<div class="container">
+    <div class="center">
+        <h1>Garage Admin</h1>
+        <form method="post">
+            <div class="txt_field">
+                <input type="text" required [(ngModel)]="accountInfo.username" name="username">
+                <span></span>
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" required [(ngModel)]="accountInfo.password" name="password">
+                <span></span>
+                <label>Password</label>
+            </div>
+            <button class="btnSubmit" (click)="login()">Sign in</button>
+        </form>
     </div>
 </div>

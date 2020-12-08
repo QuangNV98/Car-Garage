@@ -37,7 +37,7 @@ public class WebConfig implements Filter {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
 		response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Access-Control-Request-Headers, Access-Control-Allow-Origin,Upload-check");
-		response.setHeader("Access-Control-Max-Age", "3600");
+		response.setHeader("Access-Control-Max-Age", "*");
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		if ("OPTIONS".equalsIgnoreCase(((HttpServletRequest) req).getMethod())) {
 			response.setStatus(HttpServletResponse.SC_OK);

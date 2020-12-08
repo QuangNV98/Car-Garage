@@ -43,8 +43,11 @@ export class DashboardComponent implements OnInit {
     }, 5000);
   }
   onMessageReceived(message) {
-    console.log("Message Recieved from Server :: " + message);
-    console.log("alooooo");
+    console.log("Message Recieved from Server :: ");
+    if(message.body) {
+      alert('Have a recue from customer')
+    }
+    
     // this.appComponent.handleMessage(JSON.stringify(message.body));
   }
 }

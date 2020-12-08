@@ -36,6 +36,9 @@ import {FileUploadModule} from 'primeng/fileupload';
 import { CustomerDialogComponent } from 'app/pages/dialog/customer-dialog/customer-dialog.component';
 import { EquipmentDialogComponent } from 'app/pages/dialog/equipment-dialog/equipment-dialog.component';
 import {InputNumberModule} from 'primeng/inputnumber';
+import { RescueComponent } from 'app/pages/rescue/rescue.component';
+import { AgmCoreModule } from '@agm/core'
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   imports: [
@@ -53,7 +56,11 @@ import {InputNumberModule} from 'primeng/inputnumber';
     ToolbarModule,
     DropdownModule,
     FileUploadModule,
-    InputNumberModule
+    InputNumberModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAFFEhrr0CDZ3zXnVNc9HAcdgQ4UBUQec4'
+    }),
+    AgmDirectionModule
   ],
   declarations: [
     DashboardComponent,
@@ -74,6 +81,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
     GuaranteeDetailComponent,
     CustomerDialogComponent,
     EquipmentDialogComponent,
+    RescueComponent,
   ],
   providers: [DialogService,MessageService  ],
 })

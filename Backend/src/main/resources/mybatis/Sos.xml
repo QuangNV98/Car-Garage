@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quangnv.dao.SosDao">
+
+	<insert id="insertnewSos" parameterType="map">
+		INSERT INTO rescue(
+			ID_CUS,
+			LAT,
+			LNG
+		)
+		VALUES (
+			#{ID_CUS},
+			#{LAT},
+			#{LNG}	
+		)
+	</insert>
+	
+	<select id="getAllSos" parameterType="map" resultType="map">
+		SELECT
+			A.ID,
+			A.ID_CUS,
+			A.LAT,
+			A.LNG,
+			A.STATE,
+			B.NAME,
+			B.PHONE_NUM
+		FROM rescue as A INNER JOIN user as B ON A.ID_CUS = B.ID
+			
+	</select>
+	
+	<update id="updateStateSos" parameterType="map">
+		UPDATE rescue 
+		SET
+ 			STATE = 1
+ 		WHERE ID = #{ID}
+	</update>
+
+</mapper> 

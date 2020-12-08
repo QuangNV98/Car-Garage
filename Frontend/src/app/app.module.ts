@@ -15,6 +15,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import {HttpClientModule} from '@angular/common/http';
 import { AppService } from './service/app.service';
 import { AuthenticationService } from './service/authentication.service';
+import { AgmCoreModule } from '@agm/core'
 
 @NgModule({
   declarations: [
@@ -30,6 +31,9 @@ import { AuthenticationService } from './service/authentication.service';
     ToastrModule.forRoot(),
     FooterModule,
     FixedPluginModule,
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyAFFEhrr0CDZ3zXnVNc9HAcdgQ4UBUQec4'
+    // })
     //primeng module
     // TableModule,
     // ButtonModule,

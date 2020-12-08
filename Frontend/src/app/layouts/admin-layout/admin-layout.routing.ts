@@ -1,3 +1,4 @@
+import { RescueComponent } from './../../pages/rescue/rescue.component';
 import { UserManagementComponent } from 'app/pages/user-management/user-management.component';
 import { Routes } from '@angular/router';
 
@@ -22,11 +23,12 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-management', component: UserManagementComponent },
     { path: 'equip-management', component: EquipmentManagementComponent },
     { path: 'task-planning', component: TaskPlanningComponent },
+    { path: 'rescue', component: RescueComponent },
     { path: 'user', component: UserComponent },
     { path: 'table', component: TableComponent },
     { path: 'typography', component: TypographyComponent },
-    { path: 'icons', component: IconsComponent },
     { path: 'maps', component: MapsComponent },
+    { path: 'icons', component: IconsComponent },
     { path: 'notifications', component: NotificationsComponent },
     { path: 'upgrade', component: UpgradeComponent }
 ];
