@@ -31,9 +31,7 @@ import { AgmCoreModule } from '@agm/core'
     ToastrModule.forRoot(),
     FooterModule,
     FixedPluginModule,
-    // AgmCoreModule.forRoot({
-    //   apiKey: 'AIzaSyAFFEhrr0CDZ3zXnVNc9HAcdgQ4UBUQec4'
-    // })
+
     //primeng module
     // TableModule,
     // ButtonModule,
