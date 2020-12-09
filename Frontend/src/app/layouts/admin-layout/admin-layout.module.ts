@@ -58,7 +58,7 @@ import { AgmDirectionModule } from 'agm-direction';
     FileUploadModule,
     InputNumberModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'AIzaSyAFFEhrr0CDZ3zXnVNc9HAcdgQ4UBUQec4'
     }),
     AgmDirectionModule
   ],
