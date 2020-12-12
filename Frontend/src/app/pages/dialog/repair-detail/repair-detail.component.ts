@@ -63,6 +63,11 @@ export class RepairDetailComponent implements OnInit {
         
       } else if (this.config.data.CRUD == "U") {
         //update
+        this.id_recent = 0;
+        this.request = new TransactionRequest();
+        this.request.ID = this.config.data.TRANS_ID;
+        this.getTransactionById();
+        this.getListTransEquipment();
       }
     }
   }
@@ -75,6 +80,39 @@ export class RepairDetailComponent implements OnInit {
         this.doCreate();
       }
     }
+  }
+
+  getTransactionById() {
+    this.service.getTransRepairingById(this.request).subscribe(
+      response => {
+        if(response) {
+          this.request = response;
+          var lstStatus = this.status.filter(
+            (item,index) => {
+              return item['ID'] == response['STATUS']
+            }
+          )
+          this.selectedStatus = lstStatus? lstStatus[0] : null;
+        }
+      }
+    )
+  }
+
+  getListTransEquipment() {
+    this.service.getListTransEquip(this.request).subscribe(
+      response => {
+        if(response) {
+          this.dataGridEquip = response;
+          if(this.dataGridEquip.length >0) {
+            this.dataGridEquip.forEach((item, index) => {
+                this.id_recent++
+                item['ID_RECENT'] = this.id_recent
+            })
+          }
+          console.log('this.dataGridEquip',this.dataGridEquip)
+        }
+      }
+    )
   }
 
   doValidate() {

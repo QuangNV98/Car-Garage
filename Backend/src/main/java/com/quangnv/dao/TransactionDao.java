@@ -10,4 +10,6 @@ public interface TransactionDao {
 	int insertTransaction(Map<Object, Object> map) throws Exception;
 	int insertTransEquipment(Map<Object, Object> map) throws Exception;
 	List<Map<Object,Object>> getAllTransRepairing() throws Exception;
+	Map<Object, Object> getTransRepairById(Map<Object, Object> map) throws Exception;
+	List<Map<Object,Object>> getListTransEquipByIdTrans(Map<Object, Object> map) throws Exception;
 }

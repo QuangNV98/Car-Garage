@@ -51,12 +51,12 @@ export class TaskPlanningComponent implements OnInit {
 		baseZIndex: 10000,
 		data: {
 			CRUD: rowData == null ? "C" : "U",
-			TRANS: rowData ? rowData : null,
+			TRANS_ID: rowData['ID_TRANS'] ? rowData['ID_TRANS'] : '',
 		}
 	});
 
 	this.ref.onClose.subscribe(() =>{
-		
+		this.getAllTransRepairing();
 	});
   }
 

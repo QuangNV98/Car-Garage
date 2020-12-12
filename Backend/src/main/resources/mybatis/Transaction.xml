@@ -68,5 +68,40 @@
 		FROM transaction as A INNER JOIN user as B ON A.ID_CUS = B.ID
 			
 	</select>
+	
+	<select id="getTransRepairById" parameterType="map" resultType="map">
+		SELECT 
+			A.ID,
+			A.ID_CUS,
+			A.TYPE,
+			A.START_DT,
+			A.END_DT,
+			A.CAR_NAME,
+			A.CAR_COLOR,
+			A.CAR_MODEL,
+			A.CAR_NUM,
+			A.CAR_ABOUT,
+			A.FEE_EQUIP,
+			A.FEE_WORK,
+			A.FEE_TOTAL,
+			A.STATUS,
+			B.NAME as NAME_CUS,
+			B.PHONE_NUM as PHONE_CUS,
+			B.ADDRESS as ADDRESS_CUS
+		FROM transaction as A INNER JOIN user as B ON A.ID_CUS = B.ID 
+		WHERE A.ID = #{ID}
+		
+	</select>
+	
+	<select id="getListTransEquipByIdTrans" parameterType="map" resultType="map">
+		SELECT
+			A.QUANTITY_EQUIP,
+			A.PRICE_TOTAL,
+			B.IMAGE,
+			B.NAME,
+			B.ABOUT
+		FROM trans_equip as A INNER JOIN equipment as B ON A.ID_EQUIP = B.ID
+		WHERE A.ID_TRANS = #{ID}
+	</select>
 
 </mapper> 
