@@ -32,7 +32,7 @@ import { AgmCoreModule } from '@agm/core'
     FooterModule,
     FixedPluginModule,
     // AgmCoreModule.forRoot({
-    //   apiKey: 'AIzaSyAFFEhrr0CDZ3zXnVNc9HAcdgQ4UBUQec4'
+    //   apiKey: ''
     // })
     //primeng module
     // TableModule,
