@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quangnv.service.TransactionService;
@@ -66,6 +67,30 @@ public class TransactionController {
 		List list = new ArrayList();
 		try {
 			list = service.getAllTransRepairing();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@GetMapping("/getTransRepairById")
+	public Object getTransRepairById(@RequestParam Map request) {
+		Map map= new HashMap();
+		try {
+			map = service.getTransRepairById(request);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@GetMapping("/getListTransEquip")
+	public List<Map<Object, Object>> getListTransEquipBy(@RequestParam Map request) {
+		List list = new ArrayList();
+		try {
+			list = service.getListTransEquipByIdTrans(request);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

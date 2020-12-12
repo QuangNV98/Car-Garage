@@ -33,4 +33,12 @@ public class TransactionService {
 		return dao.getAllTransRepairing();
 	}
 	
+	public Map getTransRepairById(Map map) throws Exception {
+        return dao.getTransRepairById(map);
+    }
+	
+	public List getListTransEquipByIdTrans(Map map) throws Exception {
+		return dao.getListTransEquipByIdTrans(map);
+	}
+	
 }

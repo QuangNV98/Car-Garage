@@ -29,4 +29,18 @@ export class TransactionService {
         const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getAllTransRepairing');
         return this.http.get<any[]>(url,{headers: headers});
     }
+
+    getTransRepairingById(request: any): Observable<any>{
+        const headers: HttpHeaders = HeadersUtil.getHeadersAuth();
+        const params: RequestParam[] = ParamUtil.toRequestParams(request);
+        const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getTransRepairById', params);
+        return this.http.get<any>(url,{headers: headers});
+    }
+
+    getListTransEquip(request: any): Observable<any[]>{
+        const headers: HttpHeaders = HeadersUtil.getHeadersAuth();
+        const params: RequestParam[] = ParamUtil.toRequestParams(request);
+        const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getListTransEquip', params);
+        return this.http.get<any[]>(url,{headers: headers});
+    }
 }
