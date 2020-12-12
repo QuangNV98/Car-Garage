@@ -11,4 +11,6 @@ public interface AccountDao {
 	int insertAccount(Map<Object, Object> map) throws Exception;
 	int updateAccount(Map<Object, Object> map) throws Exception;
 	int updateAccountDontChangePass(Map<Object, Object> map) throws Exception;
+	Map<Object, Object> findStaffAccount(Map<Object, Object> map) throws Exception;
+	Map<Object, Object> findCustomerAccount(Map<Object, Object> map) throws Exception;
 }

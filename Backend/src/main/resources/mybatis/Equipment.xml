@@ -37,5 +37,13 @@
 			ABOUT = #{ABOUT}
 		WHERE ID = #{ID}
 	</insert>
+	
+	<select id="getEquipInTransForDelEquip" parameterType="map" resultType="map">
+		SELECT * FROM trans_equip WHERE ID_EQUIP = #{ID}
+	</select>
+	
+	<delete id="deleteEquipment" parameterType="map">
+		DELETE FROM equipment WHERE ID = #{ID}
+	</delete> 
 
 </mapper> 

@@ -38,5 +38,25 @@
 			USERNAME = #{USERNAME}
 		WHERE ID = #{ID_ACCOUNT}
 	</update>
+	
+	<select id="findStaffAccount" parameterType="map"
+		resultType="map">
+		SELECT 
+			A.ID,
+			A.USERNAME,
+			A.PASSWORD
+		FROM account as A INNER JOIN user as B ON A.ID = B.ID_ACCOUNT
+		WHERE A.USERNAME = #{USERNAME} AND B.ROLE = 'ADMIN'
+	</select>
+	
+	<select id="findCustomerAccount" parameterType="map"
+		resultType="map">
+		SELECT 
+			A.ID,
+			A.USERNAME,
+			A.PASSWORD
+		FROM account as A INNER JOIN user as B ON A.ID = B.ID_ACCOUNT
+		WHERE A.USERNAME = #{USERNAME} AND B.ROLE = 'CUSTOMER'
+	</select>
 
 </mapper> 

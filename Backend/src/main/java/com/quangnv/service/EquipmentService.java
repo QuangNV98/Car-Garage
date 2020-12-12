@@ -37,4 +37,15 @@ public class EquipmentService {
 		return returnId;
 	}
 	
+	public List getEquipInTransForDelEquip(Map<Object, Object> map) throws Exception {
+		return dao.getEquipInTransForDelEquip(map);
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int deleteEquipment(Map<Object, Object> map) throws Exception {
+		int returnId = 0;
+		returnId = dao.deleteEquipment(map);
+		return returnId;
+	}
+	
 }

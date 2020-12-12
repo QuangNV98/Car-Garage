@@ -13,6 +13,8 @@ export class EquipmentDetailComponent implements OnInit {
   request: EquipmentRequest;
   url: any;
   file: any;
+  showBtnDel: boolean = false;
+  lstEquipInTrans: any[] =[];
 
   constructor(
     public ref: DynamicDialogRef,
@@ -22,14 +24,17 @@ export class EquipmentDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.file = null;
+    this.lstEquipInTrans =[];
     if (this.config.data) {
       if (this.config.data.CRUD == "C") {
         //create
         this.request = new EquipmentRequest();
         this.request.PRICE = 0;
         this.url = '/assets/img/system/default-equip.png'
+        this.showBtnDel = false;
       } else if (this.config.data.CRUD == "U") {
         //update
+        this.showBtnDel = true;
         this.request = Object.assign(this.config.data.EQUIP);
         this.searchEquipmentById();
       }
@@ -59,6 +64,36 @@ export class EquipmentDetailComponent implements OnInit {
         this.doCreate();
       }
     }
+  }
+
+  checkForDel() {
+    if(this.request.ID) {
+      this.service.getEquipInTransForDelEquip(this.request).subscribe(
+        response => {
+          if(response) {
+            this.lstEquipInTrans = response;
+            if(this.lstEquipInTrans.length >0) {
+              alert('U can not del this Equipment')
+            } else {
+              this.doDelete();
+            }
+          }
+        }
+      )
+    }
+  }
+
+  doDelete() {
+    this.service.deleteEquipment(this.request).subscribe(
+      response => {
+        if(response['STATE'] == 'SUCCESS') {
+          alert(response['STATE'])
+          this.ref.close();
+        } else {
+          alert(response['STATE'])
+        }
+      }
+    )
   }
 
   doCreate() {

@@ -55,5 +55,13 @@ public class AccountService {
 		returnId = dao.updateAccountDontChangePass(param);
 		return returnId;
 	}
+	
+	public Map findStaffAccount(Map map) throws Exception {
+        return dao.findStaffAccount(map);
+    }
+	
+	public Map findCustomerAccount(Map map) throws Exception {
+        return dao.findCustomerAccount(map);
+    }
 
 }

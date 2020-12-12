@@ -56,7 +56,7 @@ export class TaskPlanningComponent implements OnInit {
 	});
 
 	this.ref.onClose.subscribe(() =>{
-		
+		this.getAllTransRepairing();
 	});
   }
 

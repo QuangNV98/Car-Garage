@@ -11,4 +11,6 @@ public interface EquipmentDao {
 	List<Map<Object,Object>> getAllEquipment() throws Exception;
 	Map<Object, Object> getEquipmentById(Map<Object, Object> map) throws Exception;
 	int updateEquipment(Map<Object, Object> map) throws Exception;
+	List<Map<Object,Object>> getEquipInTransForDelEquip(Map<Object, Object> map) throws Exception;
+	int deleteEquipment(Map<Object, Object> map) throws Exception;
 }

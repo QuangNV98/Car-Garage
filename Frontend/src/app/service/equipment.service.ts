@@ -44,10 +44,17 @@ export class EquipmentService {
         return this.http.get<any>(url,{headers: headers});
     }
 
-    // doUpdateEquipment(request: any): Observable<any> {
-    //     return this.http.post<ResponseData<any>>(environment.apiURL + '/api/updateEquipment', request, {
-    //         headers: HeadersUtil.getHeadersAuth()
-    //     });
-    // }
+    getEquipInTransForDelEquip(request: any): Observable<any[]>{
+        const headers: HttpHeaders = HeadersUtil.getHeadersAuth();
+        const params: RequestParam[] = ParamUtil.toRequestParams(request);
+        const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getEquipInTransForDelEquip', params);
+        return this.http.get<any[]>(url,{headers: headers});
+    }
+
+    deleteEquipment(request: any): Observable<any> {
+        return this.http.post<ResponseData<any>>(environment.apiURL + '/api/deleteEquipment', request, {
+            headers: HeadersUtil.getHeadersAuth()
+        });
+    }
 
 }

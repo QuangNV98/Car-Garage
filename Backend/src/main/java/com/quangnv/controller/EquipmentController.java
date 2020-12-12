@@ -143,5 +143,38 @@ public class EquipmentController {
 
 		return mapData;
 	}
+	
+	@GetMapping("/getEquipInTransForDelEquip")
+	public List<Map<Object, Object>> getEquipInTransForDelEquip(@RequestParam Map request) {
+		List list = new ArrayList();
+		try {
+			list = equip_service.getEquipInTransForDelEquip(request);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	@PostMapping("/deleteEquipment")
+	public Object deleteEquipment(@RequestBody Map request) throws Exception {
+		Map mapData = new HashMap();
+		
+		try {
+			int returnIdDel = 0;
+			returnIdDel = equip_service.deleteEquipment(request);
+			
+			if(returnIdDel !=0) {
+				mapData.put("STATE", "SUCCESS");
+			}else {
+				mapData.put("STATE", "FAIL");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			mapData.put("STATE", "FAIL");
+		}
+		
+		return mapData;
+	}
 
 }
