@@ -37,7 +37,7 @@ import { ConfirmationService } from 'primeng/api';
     FixedPluginModule,
     ConfirmDialogModule
     // AgmCoreModule.forRoot({
-    //   apiKey: ''
+    //   apiKey: 'AIzaSyAFFEhrr0CDZ3zXnVNc9HAcdgQ4UBUQec4'
     // })
     //primeng module
     // TableModule,
