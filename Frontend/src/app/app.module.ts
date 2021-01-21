@@ -15,12 +15,16 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import {HttpClientModule} from '@angular/common/http';
 import { AppService } from './service/app.service';
 import { AuthenticationService } from './service/authentication.service';
-import { AgmCoreModule } from '@agm/core'
+import { AgmCoreModule } from '@agm/core';
+import { HomepageLayoutComponent } from './layouts/homepage-layout/homepage-layout.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    HomepageLayoutComponent
   ],
   imports: [
     HttpClientModule,
@@ -31,6 +35,7 @@ import { AgmCoreModule } from '@agm/core'
     ToastrModule.forRoot(),
     FooterModule,
     FixedPluginModule,
+    ConfirmDialogModule
     // AgmCoreModule.forRoot({
     //   apiKey: 'AIzaSyAFFEhrr0CDZ3zXnVNc9HAcdgQ4UBUQec4'
     // })
@@ -38,11 +43,12 @@ import { AgmCoreModule } from '@agm/core'
     // TableModule,
     // ButtonModule,
     // DynamicDialogModule,
-    // ToastModule
+    // ToastModule,
   ],
   providers: [
     AppService,
     AuthenticationService,
+    ConfirmationService
 ],
   bootstrap: [AppComponent]
 })

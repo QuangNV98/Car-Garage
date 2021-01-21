@@ -30,4 +30,10 @@ export class RescueService {
         });
     }
 
+    doIgnore(request: any): Observable<any> {
+        return this.http.post<ResponseData<any>>(environment.apiURL + '/api/doIgnoreSos', request, {
+            headers: HeadersUtil.getHeadersAuth()
+        });
+    }
+
 }

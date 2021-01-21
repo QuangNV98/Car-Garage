@@ -4,6 +4,7 @@ import { StaffDetailComponent } from "../dialog/staff-detail/staff-detail.compon
 import { MessageService } from "primeng/api";
 import { CustomerDetailComponent } from "../dialog/customer-detail/customer-detail.component";
 import { StaffService } from "app/service/staff.service";
+import { StaffRequest } from 'app/model/staff-request';
 
 @Component({
   selector: "app-user-management",
@@ -15,7 +16,7 @@ export class UserManagementComponent implements OnInit {
 
   dataGridStaff: Object[] = [];
   dataGridCustomer: Object[] = [];
-
+  requestLoggedIn = new StaffRequest();
   cols_cus: any[];
   cols: any[];
   ref: DynamicDialogRef;
@@ -29,21 +30,33 @@ export class UserManagementComponent implements OnInit {
   ngOnInit(): void {
     this.getListStaff();
     this.getListCustomer();
+    this.getRecentUser();
 
     this.cols_cus = [
-      { field: "NAME", header: "Name" },
-      { field: "USERNAME", header: "Username" },
-      { field: "PHONE_NUM", header: "Phone Number" },
-      { field: "ADDRESS", header: "Address" },
+      { field: "NAME", header: "Tên" },
+      { field: "USERNAME", header: "Tên đăng nhập" },
+      { field: "PHONE_NUM", header: "SĐT" },
+      { field: "ADDRESS", header: "Địa chỉ" },
     ];
 
     this.cols = [
-      { field: "NAME", header: "Name" },
-      { field: "USERNAME", header: "Username" },
-      { field: "PHONE_NUM", header: "Phone Number" },
+      { field: "NAME", header: "Tên" },
+      { field: "USERNAME", header: "Tên đăng nhập" },
+      { field: "PHONE_NUM", header: "SĐT" },
       { field: "EMAIL", header: "Email" },
-      { field: "COMP_NM", header: "Company" },
+      { field: "COMP_NM", header: "Công ty" },
     ];
+  }
+
+  getRecentUser() {
+    this.serviceStaff.getStaffByUserName().subscribe(
+      response => {
+        if(response) {
+          this.requestLoggedIn = response
+          console.log('this.requestLoggedIn',this.requestLoggedIn);
+        }
+      }
+    )
   }
 
   getListStaff() {
@@ -60,7 +73,7 @@ export class UserManagementComponent implements OnInit {
 
   selectedStaff(event, rowData) {
     this.ref = this.dialogService.open(StaffDetailComponent, {
-      header: "Employee Information",
+      header: "Thông tin nhân viên",
       width: "70%",
       contentStyle: { "max-height": "500px", overflow: "auto" },
       baseZIndex: 10000,
@@ -77,7 +90,7 @@ export class UserManagementComponent implements OnInit {
 
   selectedCustomer(event, rowData) {
     this.ref = this.dialogService.open(CustomerDetailComponent, {
-      header: "Customer Information",
+      header: "Thông tin khách hàng",
       width: "30%",
       contentStyle: { "max-height": "500px", overflow: "auto" },
       baseZIndex: 10000,

@@ -14,8 +14,8 @@ export class AppService {
     return this.authService.checkCredentials();
   }
 
-  saveToken(token: any) {
-    this.authService.saveToken(token);
+  saveToken(token: any, username: any) {
+    this.authService.saveToken(token,username);
   }
 
   login(account: AccountInfo): Observable<any>  {

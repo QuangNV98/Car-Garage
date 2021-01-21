@@ -31,5 +31,13 @@ public class SosService {
 		returnId= dao.updateStateSos(map);
 		return returnId;
 	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int doIgnoreSos(Map<Object, Object> map) throws Exception {
+		int returnId = 0;
+		returnId= dao.doIgnoreSos(map);
+		return returnId;
+	}
+
 
 }

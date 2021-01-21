@@ -4,7 +4,7 @@
             <div class="card-header" style="background-color: #F5F5F5;">
                 <div style="display: inline;">
                     <span style="color: red;float: left;">*</span>
-                    <h6 class="card-title" style="float: left;">Customer information</h6>
+                    <h6 class="card-title" style="float: left;">Thông tin khách hàng</h6>
                 </div>  
             </div>
             <div class="card-body">
@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Họ và tên</label>
                             <div class="p-inputgroup">
                                 <span class="p-inputgroup-addon" (click)="openDialogCustomer()"><i class="pi pi-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Name..." [(ngModel)]="request.NAME_CUS" readonly>
@@ -24,14 +24,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Phone Number</label>
+                            <label>SĐT</label>
                             <input type="number" class="form-control" placeholder="phone..." [(ngModel)]="request.PHONE_CUS" readonly>
                         </div>
                     </div>
         
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Street Adress</label>
+                            <label>Địa chỉ</label>
                             <input type="text" class="form-control" placeholder="address..." [(ngModel)]="request.ADDRESS_CUS" readonly>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
             <div class="card-header" style="background-color: #F5F5F5;">
                 <div style="display: inline;">
                     <span style="color: red;float: left;">*</span>
-                    <h6 class="card-title">General information</h6>
+                    <h6 class="card-title">Thông tin chung</h6>
                 </div>
             </div>
             <div class="card-body">
@@ -54,18 +54,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Type</label>
+                            <label>Loại</label>
                             <div class="p-inputgroup">
                                 <span class="p-inputgroup-addon"><i class="pi pi-tags"></i></span>
-                                <input type="text" class="form-control" value="Repair, fixxing" readonly>
+                                <input type="text" class="form-control" value="Sửa chữa" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Status</label>
+                            <label>Trạng thái</label>
                             <div>
-                                <p-dropdown [options]="status" optionLabel="Title" optionValue="ID" [(ngModel)]="selectedStatus"
+                                <p-dropdown [options]="status" optionLabel="Title" optionValue="ID" [(ngModel)]="selectedStatus" [readonly]="isOnlyView"
                                     placeholder="Select a Status" (onChange)="onChangeStatus($event)">
                                 </p-dropdown>
                             </div>
@@ -76,14 +76,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Start Date</label>
+                            <label>Ngày tiếp nhận</label>
                             <input type="date" class="form-control" [(ngModel)]="request.START_DT" readonly=true>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>End Date(Expected)</label>
-                            <input type="date" class="form-control" [(ngModel)]="request.END_DT">
+                            <label>Ngày bàn giao(dự kiến)</label>
+                            <input type="date" class="form-control" [(ngModel)]="request.END_DT" [readonly]="isOnlyView">
                         </div>
                     </div>
                 </div>
@@ -95,35 +95,35 @@
 
 <div class="card">
     <div class="card-header" style="background-color: #F5F5F5;">
-        <h6 class="card-title">Car information</h6>
+        <h6 class="card-title">Thông tin phương tiện</h6>
     </div>
     <div class="card-body">
 
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>Name</label><span style="color: red;">*</span>
-                    <input type="text" class="form-control" placeholder="Vehicle name..." [(ngModel)]="request.CAR_NAME">
+                    <label>Tên</label><span style="color: red;">*</span>
+                    <input type="text" class="form-control" placeholder="Vehicle name..." [(ngModel)]="request.CAR_NAME" [readonly]="isOnlyView">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>Model</label>
-                    <input type="text" class="form-control" placeholder="Model..." [(ngModel)]="request.CAR_MODEL">
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Colour</label>
-                    <input type="text" class="form-control" placeholder="Color..." [(ngModel)]="request.CAR_COLOR">
+                    <label>Hãng</label>
+                    <input type="text" class="form-control" placeholder="Model..." [(ngModel)]="request.CAR_MODEL" [readonly]="isOnlyView">
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>License plates</label><span style="color: red;">*</span>
-                    <input type="text" class="form-control" placeholder="number..." [(ngModel)]="request.CAR_NUM">
+                    <label>Màu</label>
+                    <input type="text" class="form-control" placeholder="Color..." [(ngModel)]="request.CAR_COLOR" [readonly]="isOnlyView">
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Biển số xe</label><span style="color: red;">*</span>
+                    <input type="text" class="form-control" placeholder="number..." [(ngModel)]="request.CAR_NUM" [readonly]="isOnlyView">
                 </div>
             </div>
         </div>
@@ -131,8 +131,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>The condition of the vehicle upon receipt</label>
-                    <textarea class="form-control" [rows]="4" [cols]="25" pInputTextarea [(ngModel)]="request.CAR_ABOUT"
+                    <label>Tình trạng xe khi tiếp nhận</label>
+                    <textarea class="form-control" [rows]="4" [cols]="25" pInputTextarea [(ngModel)]="request.CAR_ABOUT" [readonly]="isOnlyView"
                                 autoResize="autoResize"></textarea>
                 </div>
             </div>
@@ -144,11 +144,11 @@
 <div class="card">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
-            <h6 class="card-title">Manage Equipments</h6>
+            <h6 class="card-title">Thông tin vật tư sử dụng</h6>
         </ng-template>
 
         <ng-template pTemplate="right">
-            <button pButton pRipple label="Add" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openDialogEquipment()"></button>
+            <button *ngIf="!isOnlyView" pButton pRipple label="Add" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openDialogEquipment()"></button>
         </ng-template>
     </p-toolbar>
 
@@ -156,12 +156,12 @@
         >
         <ng-template pTemplate="header">
             <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>About</th>
-                <th></th>
+                <th>Ảnh</th>
+                <th>Tên</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
+                <th>Mô tả</th>
+                <th *ngIf="!isOnlyView"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
@@ -173,11 +173,12 @@
                 </td>
                 <td>{{product.NAME}}</td>
                 <td>
-                    <input type="number" value="{{product.QUANTITY_EQUIP}}" min="1" max="100" style="width: 60px;" (change)="doChangeQuantity($event,product.ID_RECENT)">    
+                    <input type="number" value="{{product.QUANTITY_EQUIP}}" min="1" max="100"
+                    [readonly]="isOnlyView" style="width: 60px;" (change)="doChangeQuantity($event,product.ID_RECENT)">    
                 </td>
                 <td>{{product.PRICE_TOTAL| currency:'VND'}}</td>
                 <td>{{product.ABOUT}}</td>
-                <td>
+                <td *ngIf="!isOnlyView">
                     <button pButton icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEquipRecent(product.ID_RECENT)"></button>
                 </td>
             </tr>
@@ -187,13 +188,13 @@
 
 <div class="card">
     <div class="card-header" style="background-color: #F5F5F5;">
-        <h6 class="card-title">Total Fee</h6>
+        <h6 class="card-title">Thông tin chi phí</h6>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>Equipment fees</label>
+                    <label>Giá vật tư</label>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">VND</span>
                         <input type="number" class="form-control" readonly [ngModel]="request.FEE_EQUIP">
@@ -202,10 +203,10 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>Repairing fees</label><span style="color: red;">*</span>
+                    <label>Công sửa chửa</label><span style="color: red;">*</span>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">VND</span>
-                        <input type="number" [(ngModel)]="request.FEE_WORK" min="0" max="999999999" class="form-control"
+                        <input type="number" [(ngModel)]="request.FEE_WORK" min="0" max="999999999" class="form-control" [readonly]="isOnlyView"
                          placeholder="price..." (change)="doChangeFeeOfWork($event)">
                     </div>
                 </div>
@@ -213,7 +214,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Total</label>
+                    <label>Tổng</label>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">VND</span>
                         <input type="number" class="form-control" readonly [(ngModel)]="request.FEE_TOTAL">
@@ -225,6 +226,10 @@
 </div>
 <div class="row">
     <div class="update ml-auto mr-auto">
-        <button type="submit" class="btn btn-primary btn-round" (click)="doSubmit()">Submit</button>
+        <button *ngIf="!isOnlyView" type="submit" class="btn btn-primary btn-round" (click)="doSubmit()">Gửi</button>
+        <button *ngIf="isOnlyView" type="submit" class="btn btn-primary btn-round" (click)="doGuarantee()">Bảo hành</button>
     </div>
 </div>
+
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [style]="{width: '25vw'}" position="top" [baseZIndex]="10000"></p-confirmDialog>

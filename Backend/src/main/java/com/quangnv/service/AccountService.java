@@ -56,12 +56,20 @@ public class AccountService {
 		return returnId;
 	}
 	
+	public Map findUser(Map map) throws Exception {
+        return dao.findUser(map);
+    }
+	
 	public Map findStaffAccount(Map map) throws Exception {
         return dao.findStaffAccount(map);
     }
 	
 	public Map findCustomerAccount(Map map) throws Exception {
         return dao.findCustomerAccount(map);
+    }
+	
+	public Map getInfoCustomerAfterLogin(Map map) throws Exception {
+        return dao.getInfoCustomerAfterLogin(map);
     }
 
 }

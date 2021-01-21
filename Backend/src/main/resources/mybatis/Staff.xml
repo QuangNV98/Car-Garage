@@ -51,9 +51,10 @@
 			A.ABOUT,
 			A.ROLE,
 			A.ID_NUM,
+			A.FCM_TOKEN,
 			B.USERNAME
 		FROM user as A LEFT JOIN account as B ON A.ID_ACCOUNT = B.ID
-		WHERE A.ROLE = "ADMIN"
+		WHERE A.ROLE = "ADMIN" OR A.ROLE = "EMPLOYEE"
 	</select>
 	
  	<update id="updateUser" parameterType="map">
@@ -81,9 +82,43 @@
 			A.PHONE_NUM,
 			A.ADDRESS,
 			A.ROLE,
+			A.FCM_TOKEN,
 			B.USERNAME
 		FROM user as A LEFT JOIN account as B ON A.ID_ACCOUNT = B.ID
 		WHERE A.ROLE = "CUSTOMER"
+	</select>
+	
+	<update id="updateCustomerToken" parameterType="map">
+		UPDATE user 
+		SET
+			FCM_TOKEN = #{FCM_TOKEN}
+ 		WHERE ID = #{ID}
+	</update>
+	
+	<select id="getCustomerTokenById" parameterType="map" resultType="map">
+		SELECT 
+			FCM_TOKEN
+		FROM user
+		WHERE ID = #{ID}
+	</select>
+	
+	<select id="getStaffByUserName" parameterType="map" resultType="map">
+		SELECT 
+			A.ID,
+			A.NAME,
+			A.COMP_NM,
+			A.PHONE_NUM,
+			A.EMAIL,
+			A.BIRTH_DT,
+			A.ID_CITY,
+			A.ID_DISTRICT,
+			A.ID_WARD,
+			A.ADDRESS,
+			A.ABOUT,
+			A.ID_NUM,
+			A.ROLE
+		FROM user as A LEFT JOIN account as B ON A.ID_ACCOUNT = B.ID
+		WHERE (A.ROLE = "ADMIN" OR A.ROLE = "EMPLOYEE") AND B.USERNAME= #{USERNAME}
 	</select>
 
 </mapper> 

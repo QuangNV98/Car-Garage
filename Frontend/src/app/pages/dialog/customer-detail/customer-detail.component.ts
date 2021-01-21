@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StaffRequest } from 'app/model/staff-request';
 import { StaffService } from 'app/service/staff.service';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import {MessageService, ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-customer-detail',
@@ -14,7 +15,9 @@ export class CustomerDetailComponent implements OnInit {
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private service: StaffService
+    private service: StaffService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {
@@ -33,22 +36,29 @@ export class CustomerDetailComponent implements OnInit {
 
   doSubmit() {
     if (this.doValidate()) {
-      if(this.request.ID != null && this.request.ID != '') {
-        this.doUpdate();
-      } else {
-        this.doCreate();
-      }
+      this.confirmationService.confirm({
+        message: 'Bạn có chắc chắn muốn thực hiện thay đổi?',
+        header: 'Xác nhận',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          if(this.request.ID != null && this.request.ID != '') {
+            this.doUpdate();
+          } else {
+            this.doCreate();
+          }
+        }
+      });
     }
   }
 
   doValidate() {
     if (this.request.NAME == null || this.request.NAME == "") {
-      alert("Enter name...");
+      this.showToast('warn','Cảnh báo','Họ và tên không được để trống...');
       return false;
     }
 
     if (this.request.PHONE_NUM == null || this.request.PHONE_NUM == "") {
-      alert("Enter phonenumm...");
+      this.showToast('warn','Cảnh báo','SĐT không được để trống...');
       return false;
     }
 
@@ -58,17 +68,28 @@ export class CustomerDetailComponent implements OnInit {
   doCreate() {
     this.service.doCreateUser(this.request).subscribe(
       response => {
-        alert(response['STATE']);
+        if (response['STATE'] == 'SUCCESS') {
+          this.showToast('success','Thành công','Tạo mới thành công');
+        } else if(response['STATE'] == 'FAIL') {
+          this.showToast('error','Lỗi','Tạo mới thất bại');
+        }
       }
     )
   }
 
   doUpdate() {
     this.service.doUpdateUser(this.request).subscribe((response) => {
-      if (response) {
-        alert(response['STATE']);
+      if (response['STATE'] == 'SUCCESS') {
+        this.showToast('success','Thành công','Thay đổi thành công');
+      } else if(response['STATE'] == 'FAIL') {
+        this.showToast('error','Lỗi','Thay đổi thất bại');
       }
     });
+  }
+
+  showToast(sev,sum,det) {
+    // this.messageService.add({severity:'success', summary: 'Success', detail: 'Update successfully'});
+    this.messageService.add({severity:sev, summary: sum, detail: det});
   }
 
 }

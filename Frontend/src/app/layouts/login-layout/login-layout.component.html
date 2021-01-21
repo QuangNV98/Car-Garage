@@ -28,19 +28,21 @@
 </div> -->
 <div class="container">
     <div class="center">
-        <h1>Garage Admin</h1>
+        <h1>Garage Car</h1>
         <form method="post">
             <div class="txt_field">
                 <input type="text" required [(ngModel)]="accountInfo.username" name="username">
                 <span></span>
-                <label>Username</label>
+                <label>Tên đăng nhập</label>
             </div>
             <div class="txt_field">
                 <input type="password" required [(ngModel)]="accountInfo.password" name="password">
                 <span></span>
-                <label>Password</label>
+                <label>Mật khẩu</label>
             </div>
-            <button class="btnSubmit" (click)="login()">Sign in</button>
+            <button class="btnSubmit" (click)="login()">Đăng nhập</button>
         </form>
     </div>
 </div>
+
+<p-toast position="top-right"></p-toast>

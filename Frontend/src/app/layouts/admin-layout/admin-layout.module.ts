@@ -6,13 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
 import { DashboardComponent }       from '../../pages/dashboard/dashboard.component';
-import { UserComponent }            from '../../pages/user/user.component';
-import { TableComponent }           from '../../pages/table/table.component';
-import { TypographyComponent }      from '../../pages/typography/typography.component';
-import { IconsComponent }           from '../../pages/icons/icons.component';
-import { MapsComponent }            from '../../pages/maps/maps.component';
-import { NotificationsComponent }   from '../../pages/notifications/notifications.component';
-import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserManagementComponent } from 'app/pages/user-management/user-management.component';
@@ -39,6 +32,10 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import { RescueComponent } from 'app/pages/rescue/rescue.component';
 import { AgmCoreModule } from '@agm/core'
 import { AgmDirectionModule } from 'agm-direction';
+import { GuaranteeFormComponent } from 'app/pages/dialog/guarantee-form/guarantee-form.component';
+import {CarouselModule} from 'primeng/carousel';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   imports: [
@@ -60,17 +57,13 @@ import { AgmDirectionModule } from 'agm-direction';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAFFEhrr0CDZ3zXnVNc9HAcdgQ4UBUQec4'
     }),
-    AgmDirectionModule
+    AgmDirectionModule,
+    CarouselModule,
+    RadioButtonModule,
+    ConfirmDialogModule
   ],
   declarations: [
     DashboardComponent,
-    UserComponent,
-    TableComponent,
-    UpgradeComponent,
-    TypographyComponent,
-    IconsComponent,
-    MapsComponent,
-    NotificationsComponent,
     UserManagementComponent,
     StaffDetailComponent,
     CustomerDetailComponent,
@@ -82,8 +75,9 @@ import { AgmDirectionModule } from 'agm-direction';
     CustomerDialogComponent,
     EquipmentDialogComponent,
     RescueComponent,
+    GuaranteeFormComponent
   ],
-  providers: [DialogService,MessageService  ],
+  providers: [DialogService,MessageService,ConfirmationService  ],
 })
 
 export class AdminLayoutModule {}

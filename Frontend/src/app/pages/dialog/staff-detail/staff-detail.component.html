@@ -4,39 +4,42 @@
         </div> -->
     <div class="card-body">
         <div class="row">
-            <!-- <div class="col-md-3">
-                <img src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg"
-                    style="width: 100%;height: 100%;"
-                >
-            </div> -->
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Full Name</label> <span style="color: red;">*</span>
+                            <label>Họ và tên</label> <span style="color: red;">*</span>
                             <input type="text" class="form-control" placeholder="fullname..."
                                 [(ngModel)]="request.NAME">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Company</label>
-                            <input type="text" class="form-control" disabled="" placeholder="Company"
-                                [(ngModel)]="request.COMP_NM">
+                            <label>Chức vụ</label>
+                            <div>
+                                <p-radioButton name="role" value="ADMIN" [(ngModel)]="request.ROLE" inputId="role1"
+                                ></p-radioButton>
+                                <label style="margin-left: 5px; margin-top: 15px;">Administrator</label>
+                                <span style="margin-left: 50px;"></span>
+                                <p-radioButton name="role" value="EMPLOYEE" [(ngModel)]="request.ROLE" inputId="role2"
+                                ></p-radioButton>
+                                <label style="margin-left: 5px; margin-top: 15px;">Employee</label>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Username</label><span style="color: red;">*</span>
+                            <label>Tên đăng nhập</label><span style="color: red;">*</span>
                             <input type="text" class="form-control" placeholder="username..."
                                 [(ngModel)]="request.USERNAME">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Password</label><span style="color: red;">*</span>
+                            <label>Mật khẩu</label><span style="color: red;">*</span>
                             <input type="password" class="form-control" placeholder="********"
                                 [(ngModel)]="request.PASSWORD">
                         </div>
@@ -48,7 +51,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>Phone number</label><span style="color: red;">*</span>
+                    <label>SĐT</label><span style="color: red;">*</span>
                     <input type="number" class="form-control" placeholder="phonenumber..."
                         [(ngModel)]="request.PHONE_NUM">
                 </div>
@@ -62,13 +65,13 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>ID Number</label><span style="color: red;">*</span>
+                    <label>Số CMT/căn cước</label><span style="color: red;">*</span>
                     <input type="text" class="form-control" placeholder="ID Number..." [(ngModel)]="request.ID_NUM">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>Birthday</label>
+                    <label>Ngày sinh</label>
                     <div>
                         <input class="form-control" type="date" id="birthday" name="birthday" [(ngModel)]="request.BIRTH_DT">
                     </div>
@@ -79,7 +82,7 @@
         <div class="row">
             <div class="col-md-4">
 
-                <label>City</label><span style="color: red;">*</span>
+                <label>Tỉnh thành</label><span style="color: red;">*</span>
                 <div style="width: 100%;">
                     <p-dropdown [options]="cities" optionLabel="Title" optionValue="ID" [(ngModel)]="selectedCity"
                         placeholder="Select a City" (onChange)="onChangeCity($event)">
@@ -88,7 +91,7 @@
             </div>
             <div class="col-md-4">
 
-                <label>District</label><span style="color: red;">*</span>
+                <label>Quận/huyện</label><span style="color: red;">*</span>
                 <div style="width: 100%;">
                     <p-dropdown [options]="districts" optionLabel="Title" optionValue="ID" [(ngModel)]="selectedDistrict"
                         placeholder="Select a District" (onChange)="onChangeDistrict($event)">
@@ -97,7 +100,7 @@
             </div>
             <div class="col-md-4">
 
-                <label>Ward</label><span style="color: red;">*</span>
+                <label>Phường/xã</label><span style="color: red;">*</span>
                 <div style="width: 100%;">
                     <p-dropdown [options]="wards" optionLabel="Title" optionValue="ID" [(ngModel)]="selectedWard"
                         placeholder="Select a Ward" (onChange)="onChangeWard($event)">
@@ -109,7 +112,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>Address</label>
+                    <label>Địa chỉ</label>
                     <input type="text" class="form-control" placeholder="address" [(ngModel)]="request.ADDRESS">
                 </div>
             </div>
@@ -119,15 +122,18 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>About Me</label>
+                    <label>Thông tin thêm</label>
                     <textarea class="form-control textarea" [(ngModel)]="request.ABOUT"></textarea>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="requestLoggedIn.ROLE == 'ADMIN'">
             <div class="update ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary btn-round" (click)="doSubmit()">Submit</button>
+                <button type="submit" class="btn btn-primary btn-round" (click)="doSubmit()">Gửi</button>
             </div>
         </div>
     </div>
 </div>
+
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [style]="{width: '25vw'}" position="top" [baseZIndex]="10000"></p-confirmDialog>

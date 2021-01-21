@@ -31,13 +31,30 @@ public class SosController {
 //        return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
 //    }
 
-	@RequestMapping("/sos")
-	public void test(@RequestBody Map request) {
-
+	@PostMapping("/sos")
+	public Object test(@RequestBody Map request) {
+		Map mapResponse = new HashMap();
 		try {
 			int idInsertSos = sos_service.insertnewSos(request);
 			if (idInsertSos != 0) {
 				messageTemplate.convertAndSend("/topic/greetings", request);
+				mapResponse.put("STATUS", "SUCCESS");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			mapResponse.put("STATUS", "FAIL");
+		}
+		
+		return mapResponse;
+	}
+	
+	@RequestMapping("/sos1")
+	public void test1(@RequestBody Map request) {
+
+		try {
+			int idInsertSos = sos_service.insertnewSos(request);
+			if (idInsertSos != 0) {
+				messageTemplate.convertAndSend("/topic1/greetings1", request);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -62,6 +79,25 @@ public class SosController {
 
 		try {
 			int idUpdateState = sos_service.updateStateSos(request);
+	
+			if (idUpdateState == 1 ) {
+				mapData.put("STATE", "SUCCESS");
+			} else {
+				mapData.put("STATE", "FAIL");
+			}
+		} catch (Exception e) {
+			mapData.put("STATE", "FAIL");
+		}
+
+		return mapData;
+	}
+	
+	@PostMapping("/doIgnoreSos")
+	public Object doIgnoreSos(@RequestBody Map request) throws Exception {
+		Map mapData = new HashMap();
+
+		try {
+			int idUpdateState = sos_service.doIgnoreSos(request);
 	
 			if (idUpdateState == 1 ) {
 				mapData.put("STATE", "SUCCESS");

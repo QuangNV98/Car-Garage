@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label>Username</label><span style="color: red">*</span>
+          <label>Tên đăng nhập</label><span style="color: red">*</span>
           <input
             type="text"
             class="form-control"
@@ -14,7 +14,7 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label>Password</label><span style="color: red">*</span>
+          <label>Mật khẩu</label><span style="color: red">*</span>
           <input
             type="password"
             class="form-control"
@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-md">
         <div class="form-group">
-          <label>Full name</label><span style="color: red">*</span>
+          <label>Họ và tên</label><span style="color: red">*</span>
           <input
             type="text"
             class="form-control"
@@ -40,9 +40,9 @@
     <div class="row">
       <div class="col-md">
         <div class="form-group">
-          <label>Phone number</label><span style="color: red">*</span>
+          <label>SĐT</label><span style="color: red">*</span>
           <input
-            type="number"
+            type="text"
             class="form-control"
             placeholder="Phonenumber"
             [(ngModel)]="request.PHONE_NUM"
@@ -54,7 +54,7 @@
     <div class="row">
       <div class="col-md">
         <div class="form-group">
-          <label>Address</label>
+          <label>Địa chỉ</label>
           <input
             type="text"
             class="form-control"
@@ -71,9 +71,12 @@
           class="btn btn-primary btn-round"
           (click)="doSubmit()"
         >
-          Submit
+          Gửi
         </button>
       </div>
     </div>
   </div>
 </div>
+
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [style]="{width: '25vw'}" position="top" [baseZIndex]="10000"></p-confirmDialog>

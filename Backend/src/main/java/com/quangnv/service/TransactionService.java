@@ -41,4 +41,33 @@ public class TransactionService {
 		return dao.getListTransEquipByIdTrans(map);
 	}
 	
+	@Transactional(rollbackFor = Exception.class)
+	public int updateTransaction(Map<Object, Object> map) throws Exception {
+		int returnId = 0;
+		returnId =dao.updateTransaction(map);
+		return returnId;
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int deleteTransEquipByIdTrans(Map<Object, Object> map) throws Exception {
+		int returnId = 0;
+		returnId =dao.deleteTransEquipByIdTrans(map);
+		return returnId;
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int updateTransIsGuarantee(Map<Object, Object> map) throws Exception {
+		int returnId = 0;
+		returnId =dao.updateTransIsGuarantee(map);
+		return returnId;
+	}
+	
+	public List getAllTransRepairByCusId(Map map) throws Exception {
+		return dao.getAllTransRepairByCusId(map);
+	}
+	
+	public List getAllTransCompletedByCusId(Map map) throws Exception {
+		return dao.getAllTransCompletedByCusId(map);
+	}
+	
 }

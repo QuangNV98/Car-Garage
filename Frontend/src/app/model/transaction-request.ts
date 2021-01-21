@@ -13,10 +13,13 @@ export class TransactionRequest {
     FEE_WORK:any;
     FEE_TOTAL:any;
     STATUS:any;
+    IS_GUARANTEE:any;
 
     LIST_EQUIP: any[];
 
     NAME_CUS:any;
     ADDRESS_CUS:any;
     PHONE_CUS:any;
+
+    STATUS_GUARANTEE: any;
 }

@@ -24,10 +24,10 @@ export class CustomerDialogComponent implements OnInit {
     this.getListCustomer();
 
     this.cols_cus = [
-      { field: "NAME", header: "Name" },
-      { field: "USERNAME", header: "Username" },
-      { field: "PHONE_NUM", header: "Phone Number" },
-      { field: "ADDRESS", header: "Address" },
+      { field: "NAME", header: "Tên" },
+      { field: "USERNAME", header: "Tên đăng nhập" },
+      { field: "PHONE_NUM", header: "SĐT" },
+      { field: "ADDRESS", header: "Địa chỉ" },
     ];
   }
 

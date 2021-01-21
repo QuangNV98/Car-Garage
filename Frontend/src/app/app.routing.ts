@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { NgModule } from '@angular/core';
+import { HomepageLayoutComponent } from './layouts/homepage-layout/homepage-layout.component';
 
 export const routes: Routes = [
   {
@@ -11,6 +12,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   { path: 'login', loadChildren: () => import('./layouts/login-layout/login-layout.module').then(m => m.LoginLayoutModule) },
+  { path: 'home', component: HomepageLayoutComponent},
   {
     path: 'admin',
     component: AdminLayoutComponent,

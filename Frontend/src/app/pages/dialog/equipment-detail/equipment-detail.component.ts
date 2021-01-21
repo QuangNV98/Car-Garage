@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EquipmentRequest } from 'app/model/equipment-request';
 import { EquipmentService } from 'app/service/equipment.service';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import {MessageService, ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-equipment-detail',
@@ -19,7 +20,9 @@ export class EquipmentDetailComponent implements OnInit {
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private service: EquipmentService
+    private service: EquipmentService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {
@@ -58,11 +61,18 @@ export class EquipmentDetailComponent implements OnInit {
 
   doSubmit() {
     if (this.doValidate()) {
-      if(this.request.ID != null && this.request.ID != '') {
-        this.doUpdate();
-      }else {
-        this.doCreate();
-      }
+      this.confirmationService.confirm({
+        message: 'Bạn có chắc chắn muốn thực hiện thay đổi?',
+        header: 'Xác nhận',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          if(this.request.ID != null && this.request.ID != '') {
+            this.doUpdate();
+          }else {
+            this.doCreate();
+          }
+        }
+      });
     }
   }
 
@@ -73,7 +83,7 @@ export class EquipmentDetailComponent implements OnInit {
           if(response) {
             this.lstEquipInTrans = response;
             if(this.lstEquipInTrans.length >0) {
-              alert('U can not del this Equipment')
+              this.showToast('warn','Cảnh bảo','Bạn không thể xóa vật tư này...');
             } else {
               this.doDelete();
             }
@@ -84,16 +94,26 @@ export class EquipmentDetailComponent implements OnInit {
   }
 
   doDelete() {
-    this.service.deleteEquipment(this.request).subscribe(
-      response => {
-        if(response['STATE'] == 'SUCCESS') {
-          alert(response['STATE'])
-          this.ref.close();
-        } else {
-          alert(response['STATE'])
-        }
+
+    this.confirmationService.confirm({
+      message: 'Bạn có chắc chắn muốn thực hiện thay đổi?',
+      header: 'Xác nhận',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.service.deleteEquipment(this.request).subscribe(
+          response => {
+            if(response['STATE'] == 'SUCCESS') {
+              this.showToast('success','Thành công','Xóa thành công');
+              this.ref.close();
+            } else {
+              this.showToast('error','Lỗi','Có lỗi khi xóa');
+            }
+          }
+        )
       }
-    )
+    });
+
+    
   }
 
   doCreate() {
@@ -110,11 +130,19 @@ export class EquipmentDetailComponent implements OnInit {
     this.service.doCreateEquipment(formData).subscribe(
       response => {
         if(response['STATE'] == 'SUCCESS') {
+          this.showToast('success','Thành công','Tạo mới vật tư thành công');
           this.request.ID = response['ID_RETURNED'];
           this.searchEquipmentById();
+        } else if(response['STATE'] == 'FAIL') {
+          this.showToast('error','Lỗi','Có lỗi khi tạo mới');
         }
       }
     )
+  }
+
+  showToast(sev,sum,det) {
+    // this.messageService.add({severity:'success', summary: 'Success', detail: 'Update successfully'});
+    this.messageService.add({severity:sev, summary: sum, detail: det});
   }
 
   doUpdate() {
@@ -128,8 +156,10 @@ export class EquipmentDetailComponent implements OnInit {
     this.service.doUpdateEquipment(formData).subscribe(
       response => {
         if(response['STATE'] == 'SUCCESS') {
-          alert('update success');
+          this.showToast('success','Thành công','Thay đổi thành công');
           this.searchEquipmentById();
+        } else if(response['STATE'] == 'FAIL') {
+          this.showToast('error','Lỗi','Gặp lỗi khi thay đổi');
         }
       }
     )
@@ -148,12 +178,12 @@ export class EquipmentDetailComponent implements OnInit {
 
   doValidate() {
     if (this.request.NAME == null || this.request.NAME == "") {
-      alert("Enter equipment name...");
+      this.showToast('warn','Cảnh bảo','Tên vật tư không được để trống......');
       return false;
     }
 
     if (this.request.PRICE == null || this.request.PRICE == 0) {
-      alert("Enter price...");
+      this.showToast('warn','Cảnh bảo','Giá không được để trống......');
       return false;
     }
 

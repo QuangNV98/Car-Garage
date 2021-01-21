@@ -21,10 +21,10 @@ export class EquipmentDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = [
-      { field: "IMAGE", header: "Image" },
-      { field: "NAME", header: "Name" },
-      { field: "PRICE", header: "Price" },
-      { field: "ABOUT", header: "About" },
+      { field: "IMAGE", header: "Ảnh" },
+      { field: "NAME", header: "Tên" },
+      { field: "PRICE", header: "Giá" },
+      { field: "ABOUT", header: "Mô tả" },
     ];
     this.getListEquipment();
   }

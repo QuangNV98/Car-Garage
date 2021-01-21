@@ -39,6 +39,22 @@
 		</selectKey>
 	</insert>
 	
+	<update id="updateTransaction" parameterType="map">
+		UPDATE transaction 
+		SET
+			END_DT = #{END_DT},
+ 			CAR_NAME = #{CAR_NAME},
+ 			CAR_COLOR = #{CAR_COLOR},
+ 			CAR_MODEL = #{CAR_MODEL},
+ 			CAR_NUM = #{CAR_NUM},
+   			CAR_ABOUT = #{CAR_ABOUT}, 
+ 			FEE_EQUIP = #{FEE_EQUIP},
+ 			FEE_WORK = #{FEE_WORK},
+ 			FEE_TOTAL = #{FEE_TOTAL},
+ 			STATUS = #{STATUS}
+ 		WHERE ID = #{ID}
+	</update>
+	
 	<insert id="insertTransEquipment" parameterType="map">
 		INSERT INTO trans_equip(
 			ID_TRANS,
@@ -53,6 +69,10 @@
 		)
 	</insert>
 	
+	<delete id="deleteTransEquipByIdTrans" parameterType="map">
+		DELETE FROM trans_equip WHERE ID_TRANS = #{ID}
+	</delete>
+	
 	<select id="getAllTransRepairing" parameterType="map" resultType="map">
 		SELECT 
 			A.ID AS ID_TRANS,
@@ -66,6 +86,53 @@
 			B.PHONE_NUM AS PHONE_CUS,
 			B.ADDRESS AS ADDRESS_CUS
 		FROM transaction as A INNER JOIN user as B ON A.ID_CUS = B.ID
+		WHERE A.STATUS = '1' OR A.STATUS = '2'
+			
+	</select>
+	
+	<select id="getAllTransRepairByCusId" parameterType="map" resultType="map">
+		SELECT 
+			A.ID AS ID_TRANS,
+			A.START_DT,
+			A.END_DT,
+			A.CAR_NAME,
+			A.CAR_COLOR,
+			A.CAR_NUM,
+			A.CAR_MODEL,
+			A.CAR_ABOUT,
+			A.STATUS,
+			A.FEE_EQUIP,
+			A.FEE_WORK,
+			A.FEE_TOTAL,
+			B.ID AS ID_CUS,
+			B.NAME AS NAME_CUS,
+			B.PHONE_NUM AS PHONE_CUS,
+			B.ADDRESS AS ADDRESS_CUS
+		FROM transaction as A INNER JOIN user as B ON A.ID_CUS = B.ID
+		WHERE (A.STATUS = '1' OR A.STATUS = '2') AND B.ID = #{ID}
+			
+	</select>
+	
+	<select id="getAllTransCompletedByCusId" parameterType="map" resultType="map">
+		SELECT 
+			A.ID AS ID_TRANS,
+			A.START_DT,
+			A.END_DT,
+			A.CAR_NAME,
+			A.CAR_COLOR,
+			A.CAR_NUM,
+			A.CAR_MODEL,
+			A.CAR_ABOUT,
+			A.STATUS ,
+			A.FEE_EQUIP,
+			A.FEE_WORK,
+			A.FEE_TOTAL,
+			B.ID AS ID_CUS,
+			B.NAME AS NAME_CUS,
+			B.PHONE_NUM AS PHONE_CUS,
+			B.ADDRESS AS ADDRESS_CUS
+		FROM transaction as A INNER JOIN user as B ON A.ID_CUS = B.ID
+		WHERE A.STATUS = '3' AND B.ID = #{ID}
 			
 	</select>
 	
@@ -85,6 +152,7 @@
 			A.FEE_WORK,
 			A.FEE_TOTAL,
 			A.STATUS,
+			A.IS_GUARANTEE,
 			B.NAME as NAME_CUS,
 			B.PHONE_NUM as PHONE_CUS,
 			B.ADDRESS as ADDRESS_CUS
@@ -99,9 +167,18 @@
 			A.PRICE_TOTAL,
 			B.IMAGE,
 			B.NAME,
-			B.ABOUT
+			B.ABOUT,
+			B.PRICE,
+			B.ID
 		FROM trans_equip as A INNER JOIN equipment as B ON A.ID_EQUIP = B.ID
 		WHERE A.ID_TRANS = #{ID}
 	</select>
+	
+	<update id="updateTransIsGuarantee" parameterType="map">
+		UPDATE transaction 
+		SET
+ 			IS_GUARANTEE = #{IS_GUARANTEE}
+ 		WHERE ID = #{ID_TRANS}
+	</update>
 
 </mapper> 

@@ -23,6 +23,12 @@ export class TransactionService {
         });
     }
 
+    doUpdateTransaction(request: any): Observable<any> {
+        return this.http.post<ResponseData<any>>(environment.apiURL + '/api/updateTransaction', request, {
+            headers: HeadersUtil.getHeadersAuth()
+        });
+    }
+
     getAllTransRepairing(): Observable<any[]>{
         const headers: HttpHeaders = HeadersUtil.getHeadersAuth();
         // const params: RequestParam[] = ParamUtil.toRequestParams(request);
@@ -41,6 +47,13 @@ export class TransactionService {
         const headers: HttpHeaders = HeadersUtil.getHeadersAuth();
         const params: RequestParam[] = ParamUtil.toRequestParams(request);
         const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getListTransEquip', params);
+        return this.http.get<any[]>(url,{headers: headers});
+    }
+
+    getAllTransCompleted(): Observable<any[]>{
+        const headers: HttpHeaders = HeadersUtil.getHeadersAuth();
+        // const params: RequestParam[] = ParamUtil.toRequestParams(request);
+        const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getAllTransCompleted');
         return this.http.get<any[]>(url,{headers: headers});
     }
 }

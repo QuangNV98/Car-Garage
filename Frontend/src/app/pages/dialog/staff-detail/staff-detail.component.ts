@@ -1,8 +1,8 @@
-import { isNullOrUndefined } from 'util';
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { DynamicDialogRef, DynamicDialogConfig } from "primeng/dynamicdialog";
 import { StaffRequest } from "app/model/staff-request";
 import { StaffService } from "app/service/staff.service";
+import {MessageService, ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: "app-staff-detail",
@@ -12,6 +12,7 @@ import { StaffService } from "app/service/staff.service";
 })
 export class StaffDetailComponent implements OnInit {
   request: StaffRequest;
+  requestLoggedIn = new StaffRequest();
   cities: City[];
   districts: District[];
   wards: Ward[];
@@ -22,11 +23,14 @@ export class StaffDetailComponent implements OnInit {
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private service: StaffService
+    private service: StaffService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.getDataCities();
+    this.getRecentUser();
     if (this.config.data) {
       if (this.config.data.CRUD == "C") {
         //create
@@ -38,6 +42,17 @@ export class StaffDetailComponent implements OnInit {
         this.request = Object.assign(this.config.data.USER);
       }
     }
+  }
+
+  getRecentUser() {
+    this.service.getStaffByUserName().subscribe(
+      response => {
+        if(response) {
+          this.requestLoggedIn = response
+          console.log('this.requestLoggedIn',this.requestLoggedIn);
+        }
+      }
+    )
   }
 
   getSelectedCity() {
@@ -110,69 +125,85 @@ export class StaffDetailComponent implements OnInit {
 
   doSubmit() {
     if (this.doValidate()) {
-      if(this.request.ID != null && this.request.ID != '') {
-        this.doUpdate();
-      } else {
-        this.doCreate();
-      }
-      
+      this.confirmationService.confirm({
+        message: 'Bạn có chắc chắn muốn thực hiện thay đổi?',
+        header: 'Xác nhận',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          if(this.request.ID != null && this.request.ID != '') {
+            this.doUpdate();
+          } else {
+            this.doCreate();
+          }
+        }
+      });
+
     }
   }
 
   doUpdate() {
     this.service.doUpdateUser(this.request).subscribe((response) => {
-      if (response) {
-        alert(response['STATE']);
+      if (response['STATE'] == 'SUCCESS') {
+        this.showToast('success','Thành công','Lưu thay đổi thành công');
+      } else if(response['STATE'] == 'FAIL') {
+        this.showToast('error','Lỗi','Lưu thay đổi thất bại');
       }
     });
   }
 
   doCreate() {
     this.service.doCreateUser(this.request).subscribe((response) => {
-      if (response) {
-        alert(response['STATE']);
+      if (response['STATE'] == 'SUCCESS') {
+        this.showToast('success','Thành công','Tạo mới thành công');
+      } else if(response['STATE'] == 'FAIL') {
+        this.showToast('error','Lỗi','Tạo mới thất bại');
       }
     });
   }
 
+  showToast(sev,sum,det) {
+    // this.messageService.add({severity:'success', summary: 'Success', detail: 'Update successfully'});
+    this.messageService.add({severity:sev, summary: sum, detail: det});
+  }
+
   doValidate() {
     if (this.request.NAME == null || this.request.NAME == "") {
-      alert("Enter name...");
+      this.showToast('warn','Cảnh báo','Họ và tên không được để trống...');
       return false;
     }
 
     if (this.request.USERNAME == null || this.request.USERNAME == "") {
-      alert("Enter username...");
+      this.showToast('warn','Cảnh báo','Tên đăng nhập không được để trống...');
       return false;
     }
 
     if ((this.request.PASSWORD == null || this.request.PASSWORD == "") && (this.request.ID == null || this.request.ID =='')) {
-      alert("Enter password...");
+      this.showToast('warn','Cảnh báo','Mật khẩu không được để trống...');
       return false;
     }
 
     if (this.request.PHONE_NUM == null || this.request.PHONE_NUM == "") {
-      alert("Enter phone...");
+      this.showToast('warn','Cảnh báo','SĐT không được để trống...');
       return false;
     }
 
     if (this.request.ID_NUM == null || this.request.ID_NUM == "") {
-      alert("Enter ID...");
+      this.showToast('warn','Cảnh báo','Số CMT/căn cước không được để trống...');
       return false;
     }
 
     if (this.request.ID_CITY == null || this.request.ID_CITY == "") {
-      alert("Enter ID_CITY...");
+      this.showToast('warn','Cảnh báo','Tỉnh thành không được để trống...');
       return false;
     }
 
     if (this.request.ID_DISTRICT == null || this.request.ID_DISTRICT == "") {
-      alert("Enter ID_DISTRICT...");
+      this.showToast('warn','Cảnh báo','Quận/huyện không được để trống...');
       return false;
     }
 
     if (this.request.ID_WARD == null || this.request.ID_WARD == "") {
-      alert("Enter ID_WARD...");
+      this.showToast('warn','Cảnh báo','Phường/xã không được để trống...');
       return false;
     }
     return true;

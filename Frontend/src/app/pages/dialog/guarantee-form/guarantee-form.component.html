@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Loại</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-tags"></i></span>
+                        <input type="text" class="form-control" value="Bảo hành" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Ngày tiếp nhận</label>
+                    <input type="date" class="form-control" [(ngModel)]="request.START_DT" readonly=true>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Ngày bàn giao(dự kiến)</label><span style="color: red;">*</span>
+                    <input type="date" class="form-control" [(ngModel)]="request.END_DT">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Tình trạng xe khi tiếp nhận</label>
+                    <textarea class="form-control" [rows]="3" [cols]="10" pInputTextarea [(ngModel)]="request.ABOUT"
+                                autoResize="autoResize"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="update ml-auto mr-auto">
+        <button type="submit" class="btn btn-primary btn-round" (click)="doSubmit()">Gửi</button>
+    </div>
+</div>
+
+<p-toast position="top-right"></p-toast>

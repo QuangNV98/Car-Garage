@@ -1,0 +1,118 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quangnv.dao.GuaranteeDao">
+
+	<select id="getAllTransCompleted" parameterType="map" resultType="map">
+		SELECT 
+			A.ID AS ID_TRANS,
+			A.START_DT,
+			A.END_DT,
+			A.CAR_NAME,
+			A.CAR_NUM,
+			A.STATUS,
+			B.ID AS ID_CUS,
+			B.NAME AS NAME_CUS,
+			B.PHONE_NUM AS PHONE_CUS,
+			B.ADDRESS AS ADDRESS_CUS
+		FROM transaction as A INNER JOIN user as B ON A.ID_CUS = B.ID
+		WHERE A.STATUS = '3'
+			
+	</select>
+	
+	<insert id="insertGuarantee" parameterType="map">
+		INSERT INTO guarantee(
+			ID_TRANS,
+			START_DT,
+			END_DT,
+			ABOUT
+		)VALUES(
+			#{ID_TRANS},
+			#{START_DT},
+			#{END_DT},
+			#{ABOUT}
+		)
+	</insert>
+	
+	<select id="getAllGuarantee" parameterType="map" resultType="map">
+		SELECT 
+			A.ID,
+			A.ID_TRANS,
+			A.START_DT,
+			A.END_DT,
+			A.ABOUT,
+			A.STATUS,
+			B.ID_CUS,
+			B.CAR_NAME,
+			B.CAR_COLOR,
+			B.CAR_MODEL,
+			B.CAR_NUM,
+			C.NAME,
+			C.PHONE_NUM,
+			C.ADDRESS
+		FROM guarantee as A INNER JOIN transaction as B ON A.ID_TRANS = B.ID
+		INNER JOIN user as C ON B.ID_CUS = C.ID
+	</select>
+	
+	<select id="getGuarantedById" parameterType="map" resultType="map">
+		SELECT 
+			A.ID,
+			A.ID_TRANS,
+			A.START_DT,
+			A.END_DT,
+			A.ABOUT,
+			A.STATUS,
+			B.ID_CUS,
+			B.CAR_NAME,
+			B.CAR_COLOR,
+			B.CAR_MODEL,
+			B.CAR_NUM,
+			C.NAME,
+			C.PHONE_NUM,
+			C.ADDRESS
+		FROM guarantee as A INNER JOIN transaction as B ON A.ID_TRANS = B.ID
+		INNER JOIN user as C ON B.ID_CUS = C.ID
+		WHERE A.ID = #{ID}
+	</select>
+	
+	<insert id="updateGuaranted" parameterType="map">
+		UPDATE guarantee
+		SET
+			END_DT = #{END_DT},
+			ABOUT = #{ABOUT},
+			STATUS = #{STATUS}
+		WHERE ID = #{ID}
+	</insert>
+	
+	<select id="getGuarantedByCusId" parameterType="map" resultType="map">
+		SELECT 
+			A.ID,
+			A.ID_TRANS,
+			A.START_DT,
+			A.END_DT,
+			A.ABOUT,
+			A.STATUS,
+			B.ID_CUS,
+			B.CAR_NAME,
+			B.CAR_COLOR,
+			B.CAR_MODEL,
+			B.CAR_NUM,
+			C.NAME as NAME_CUS,
+			C.PHONE_NUM as PHONE_CUS,
+			C.ADDRESS as ADDRESS_CUS
+		FROM guarantee as A INNER JOIN transaction as B ON A.ID_TRANS = B.ID
+		INNER JOIN user as C ON B.ID_CUS = C.ID
+		WHERE C.ID = #{ID}
+	</select>
+	
+	<delete id="deleteGuarantedById" parameterType="map">
+		DELETE FROM guarantee WHERE ID = #{ID}
+	</delete>
+	
+	<select id="getListIsGuaranted" parameterType="map" resultType="map">
+		SELECT 
+			*
+		FROM guarantee 
+		WHERE ID_TRANS = #{ID} AND (STATUS ='1' OR STATUS ='2')
+	</select>
+
+</mapper> 

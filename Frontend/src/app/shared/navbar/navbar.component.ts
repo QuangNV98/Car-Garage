@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Location} from '@angular/common';
 import { AuthenticationService } from 'app/service/authentication.service';
 import { AppService } from 'app/service/app.service';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
     moduleId: module.id,
@@ -21,7 +22,13 @@ export class NavbarComponent implements OnInit{
     public isCollapsed = true;
     @ViewChild("navbar-cmp", {static: false}) button;
 
-    constructor(location:Location, private renderer : Renderer2, private element : ElementRef, private router: Router, private appService: AppService,) {
+    constructor(
+      location:Location, 
+      private renderer : Renderer2, 
+      private element : ElementRef, 
+      private router: Router, 
+      private appService: AppService,
+      private confirmationService: ConfirmationService) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
@@ -37,6 +44,7 @@ export class NavbarComponent implements OnInit{
     }
 
     doLogout() {
+      
       this.appService.logout();
     }
 

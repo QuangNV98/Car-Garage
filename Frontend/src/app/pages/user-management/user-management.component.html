@@ -2,9 +2,9 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title" style="float: left;">Staff Information</h4>
+        <h4 class="card-title" style="float: left;">Danh sách nhân viên</h4>
         <!-- <button style="float: right;" pButton pRipple type="button" label="ADD+" class="p-button-raised p-button-text"></button> -->
-        <button style="float: right;" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" (click)="selectedStaff(null, null)"></button>
+        <button *ngIf="requestLoggedIn.ROLE == 'ADMIN'" style="float: right;" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" (click)="selectedStaff(null, null)"></button>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -29,9 +29,9 @@
     </div>
   </div>
   <div class="col-md-12">
-    <div class="card card-plain">
+    <div class="card">
       <div class="card-header">
-        <h4 class="card-title" style="float: left;">Customer Information</h4>
+        <h4 class="card-title" style="float: left;">Danh sách khách hàng</h4>
         <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
         <button style="float: right;" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-outlined" (click)="selectedCustomer(null, null)"></button>
       </div>

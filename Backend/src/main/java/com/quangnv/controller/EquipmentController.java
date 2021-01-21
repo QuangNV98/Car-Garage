@@ -44,7 +44,7 @@ public class EquipmentController {
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 			mapData.put("IMAGE", fileName);
 			try {
-				File newFile = new File("/home/quangnv/Documents/Car-Garage/Frontend/src/assets/img/system/"
+				File newFile = new File("C:\\Users\\QuangNV\\AngularProjects\\Car-Garage\\Frontend\\src\\assets\\img\\system\\"
 						+ file.getOriginalFilename());
 				FileOutputStream fileOutputStream;
 				fileOutputStream = new FileOutputStream(newFile);

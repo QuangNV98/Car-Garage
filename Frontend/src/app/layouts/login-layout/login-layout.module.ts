@@ -7,6 +7,8 @@ import { LoginLayoutRoutes } from './login-layout-routing.module';
 import { RouterModule } from '@angular/router';
 import { AppService } from 'app/service/app.service';
 import { AuthenticationService } from 'app/service/authentication.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -17,12 +19,13 @@ import { AuthenticationService } from 'app/service/authentication.service';
     imports: [
         CommonModule,
         FormsModule,
-        LoginLayoutRoutes
-
+        LoginLayoutRoutes,
+        ToastModule
     ],
     providers: [
         AppService,
-        AuthenticationService
+        AuthenticationService,
+        MessageService
     ]
 })
 export class LoginLayoutModule { }

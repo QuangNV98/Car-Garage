@@ -39,14 +39,26 @@
 		WHERE ID = #{ID_ACCOUNT}
 	</update>
 	
+	<select id="findUser" parameterType="map"
+		resultType="map">
+		SELECT 
+			A.ID,
+			A.USERNAME,
+			A.PASSWORD,
+			B.ROLE
+		FROM account as A INNER JOIN user as B ON A.ID = B.ID_ACCOUNT
+		WHERE A.USERNAME = #{USERNAME}
+	</select>
+	
 	<select id="findStaffAccount" parameterType="map"
 		resultType="map">
 		SELECT 
 			A.ID,
 			A.USERNAME,
-			A.PASSWORD
+			A.PASSWORD,
+			B.ROLE
 		FROM account as A INNER JOIN user as B ON A.ID = B.ID_ACCOUNT
-		WHERE A.USERNAME = #{USERNAME} AND B.ROLE = 'ADMIN'
+		WHERE A.USERNAME = #{USERNAME} AND (B.ROLE = 'ADMIN' || B.ROLE = 'EMPLOYEE')
 	</select>
 	
 	<select id="findCustomerAccount" parameterType="map"
@@ -54,7 +66,17 @@
 		SELECT 
 			A.ID,
 			A.USERNAME,
-			A.PASSWORD
+			A.PASSWORD,
+			B.ROLE
+		FROM account as A INNER JOIN user as B ON A.ID = B.ID_ACCOUNT
+		WHERE A.USERNAME = #{USERNAME} AND B.ROLE = 'CUSTOMER'
+	</select>
+	
+	<select id="getInfoCustomerAfterLogin" parameterType="map"
+		resultType="map">
+		SELECT 
+			B.ID,
+			B.NAME
 		FROM account as A INNER JOIN user as B ON A.ID = B.ID_ACCOUNT
 		WHERE A.USERNAME = #{USERNAME} AND B.ROLE = 'CUSTOMER'
 	</select>

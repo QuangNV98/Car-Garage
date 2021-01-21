@@ -23,10 +23,10 @@ export class EquipmentManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = [
-      { field: "IMAGE", header: "Image" },
-      { field: "NAME", header: "Name" },
-      { field: "PRICE", header: "Price" },
-      { field: "ABOUT", header: "About" },
+      { field: "IMAGE", header: "Ảnh" },
+      { field: "NAME", header: "Tên" },
+      { field: "PRICE", header: "Đơn giá" },
+      { field: "ABOUT", header: "Mô tả" },
     ];
     this.getListEquipment();
   }
@@ -41,7 +41,7 @@ export class EquipmentManagementComponent implements OnInit {
 
   selectedEquipment(event, rowData) {
     this.ref = this.dialogService.open(EquipmentDetailComponent, {
-      header: "Equipment Information",
+      header: "Thông tin vật tư",
       width: "50%",
       contentStyle: { "max-height": "500px", overflow: "auto" },
       baseZIndex: 10000,

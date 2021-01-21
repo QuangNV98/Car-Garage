@@ -19,7 +19,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="card-title">List Rescue</h4>
+    <h4 class="card-title">Danh sách cứu hộ</h4>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -31,16 +31,20 @@
       >
         <ng-template pTemplate="header" let-columns>
           <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Phone</th>
+            <th>#</th>
+            <th>Họ và tên</th>
+            <th>SĐT</th>
             <th></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
-          <tr>
+          <tr (dblclick)="selectedResuce($event, rowData)">
             <td>
-              
+              <ng-container *ngIf="rowData['STATE'] == 1;else second"><b>Xác nhận</b></ng-container>
+              <ng-template #second>
+                  <ng-container *ngIf="rowData['STATE'] == -1;else third"><b>Từ chối</b></ng-container>
+              </ng-template>
+              <ng-template #third><b>Đang chờ</b></ng-template>
             </td>
             <td>
               {{ rowData["NAME"] }}
@@ -50,6 +54,7 @@
             </td>
             <td>
               <button *ngIf="rowData['STATE'] == 0" pButton icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" (click)="doUpdateState(rowData)"></button>
+              <button style="margin-left: 5px;" *ngIf="rowData['STATE'] == 0" pButton icon="pi pi-times" class="p-button-rounded p-button-danger  p-mr-2" (click)="doIgnore(rowData)"></button>
             </td>
             <!-- <td *ngFor="let col of columns">
                 {{rowData[col.field]}}
@@ -60,3 +65,5 @@
     </div>
   </div>
 </div>
+
+<p-confirmDialog [style]="{width: '25vw'}" position="top" [baseZIndex]="10000"></p-confirmDialog>

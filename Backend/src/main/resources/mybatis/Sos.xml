@@ -9,7 +9,7 @@
 			LNG
 		)
 		VALUES (
-			#{ID_CUS},
+			#{ID},
 			#{LAT},
 			#{LNG}	
 		)
@@ -32,6 +32,13 @@
 		UPDATE rescue 
 		SET
  			STATE = 1
+ 		WHERE ID = #{ID}
+	</update>
+	
+	<update id="doIgnoreSos" parameterType="map">
+		UPDATE rescue 
+		SET
+ 			STATE = -1
  		WHERE ID = #{ID}
 	</update>
 

@@ -1,3 +1,4 @@
+import { Cookie } from 'ng2-cookies';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,19 +17,19 @@ export class StaffService {
     constructor(
         private http: HttpClient
     ) { }
-
+    // https://cors-anywhere.herokuapp.com/https://thongtindoanhnghiep.co/api/city
     getListCities(): Observable<any> {
-        const url = 'https://thongtindoanhnghiep.co/api/city';
+        const url = 'https://cors-anywhere.herokuapp.com/https://thongtindoanhnghiep.co/api/city';
         return this.http.get<any>(url);
     }
 
     getListDistricts(city_id: any): Observable<any> {
-        const url = 'https://thongtindoanhnghiep.co/api/city/' + city_id + '/district'
+        const url = 'https://cors-anywhere.herokuapp.com/https://thongtindoanhnghiep.co/api/city/' + city_id + '/district'
         return this.http.get<any>(url);
     }
 
     getListWards(district_id: any): Observable<any> {
-        const url = 'https://thongtindoanhnghiep.co/api/district/' + district_id + '/ward'
+        const url = 'https://cors-anywhere.herokuapp.com/https://thongtindoanhnghiep.co/api/district/' + district_id + '/ward'
         return this.http.get<any>(url);
     }
 
@@ -56,5 +57,14 @@ export class StaffService {
         // const params: RequestParam[] = ParamUtil.toRequestParams(request);
         const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getAllCustomer');
         return this.http.get<any[]>(url,{headers: headers});
+    }
+
+    getStaffByUserName(): Observable<any>{
+        var req = new Object();
+        req['USERNAME'] = Cookie.get("USERNAME");
+        const headers: HttpHeaders = HeadersUtil.getHeadersAuth();
+        const params: RequestParam[] = ParamUtil.toRequestParams(req);
+        const url = ApiUrlUtil.buildQueryString(environment.apiURL + '/api/getStaffByUserName', params);
+        return this.http.get<any>(url,{headers: headers});
     }
 }

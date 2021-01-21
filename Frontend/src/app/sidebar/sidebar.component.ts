@@ -10,11 +10,11 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/admin/dashboard',     title: 'Dashboard',         icon:'nc-bank',       class: '' },
-    { path: '/admin/user-management',        title: 'User Management',    icon:'nc-single-02',    class: '' },
-    { path: '/admin/equip-management',        title: 'Equipment',    icon:'nc-settings',    class: '' },
-    { path: '/admin/task-planning',        title: 'Task Planning',    icon:'nc-delivery-fast',    class: '' },
-    { path: '/admin/rescue',          title: 'SoS',              icon:'nc-pin-3',      class: '' },
+    { path: '/admin/dashboard',     title: 'Trang chủ',         icon:'nc-bank',       class: '' },
+    { path: '/admin/user-management',        title: 'Thành viên',    icon:'nc-single-02',    class: '' },
+    { path: '/admin/equip-management',        title: 'Vật tư',    icon:'nc-settings',    class: '' },
+    { path: '/admin/task-planning',        title: 'Đơn hàng',    icon:'nc-delivery-fast',    class: '' },
+    { path: '/admin/rescue',          title: 'Cứu hộ',              icon:'nc-pin-3',      class: '' },
     // { path: '/admin/icons',         title: 'Icons',             icon:'nc-palette',    class: '' },
     
 ];

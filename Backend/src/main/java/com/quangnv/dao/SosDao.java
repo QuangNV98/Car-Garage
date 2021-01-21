@@ -10,4 +10,5 @@ public interface SosDao {
 	int insertnewSos(Map<Object, Object> map) throws Exception;
 	List<Map<Object,Object>> getAllSos() throws Exception;
 	int updateStateSos(Map<Object, Object> map) throws Exception;
+	int doIgnoreSos(Map<Object, Object> map) throws Exception;
 }

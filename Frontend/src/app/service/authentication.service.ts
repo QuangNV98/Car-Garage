@@ -28,14 +28,16 @@ export class AuthenticationService {
     return false;
   }
 
-  saveToken(token: any) {
+  saveToken(token: any,username: any) {
     Cookie.delete('ACCESS_TOKEN');
     Cookie.delete('USER_NM');
     Cookie.delete('USER_ID');
     Cookie.delete('USER_ROLE');
+    Cookie.delete('USERNAME');
 
     const expireDate = new Date().getTime() + (100000 * token.expires_in);
     Cookie.set('ACCESS_TOKEN', token.token, expireDate);
+    Cookie.set('USERNAME', username, expireDate);
     // Cookie.set('USER_NM', token.usernm, expireDate);
     // Cookie.set('USER_ID', token.userId, expireDate);
     // Cookie.set('USER_ROLE', token.userRoles, expireDate);
@@ -68,6 +70,9 @@ export class AuthenticationService {
     Cookie.delete('USER_NM');
     Cookie.delete('USER_ID');
     Cookie.delete('USER_ROLE');
+    Cookie.delete('USERNAME');
+    console.log('logout ',Cookie);
+    
     this.router.navigate(['/login']);
   }
 

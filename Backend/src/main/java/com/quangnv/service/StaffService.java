@@ -37,4 +37,19 @@ public class StaffService {
 		return dao.getAllCustomer();
 	}
 	
+	@Transactional(rollbackFor = Exception.class)
+	public int updateCustomerToken(Map<Object, Object> map) throws Exception {
+		int returnId = 0;
+		returnId= dao.updateCustomerToken(map);
+		return returnId;
+	}
+	
+	public Map getCustomerTokenById(Map map) throws Exception {
+        return dao.getCustomerTokenById(map);
+    }
+	
+	public Map getStaffByUserName(Map map) throws Exception {
+        return dao.getStaffByUserName(map);
+    }
+	
 }
