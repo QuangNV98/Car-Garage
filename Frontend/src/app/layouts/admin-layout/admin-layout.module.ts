@@ -55,7 +55,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FileUploadModule,
     InputNumberModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAFFEhrr0CDZ3zXnVNc9HAcdgQ4UBUQec4'
+      apiKey: ''
     }),
     AgmDirectionModule,
     CarouselModule,
